@@ -67,7 +67,7 @@ const config = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/i,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/i,
         use: [
           {
             loader: 'url-loader',
@@ -98,6 +98,12 @@ const config = {
             name: '[name].[ext]',
             outputPath: 'static/'
           }
+        }]
+      },
+      {
+        test: /\.html$/i,
+        use: [{
+          loader: 'html-loader'
         }]
       }
     ]
