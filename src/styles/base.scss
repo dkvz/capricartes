@@ -1,5 +1,6 @@
 $bg-color: #f7797d;
 $title-color: #191970;
+$golderz: #FBD786;
 
 $tablet-width: 768px;
 $desktop-width: 1024px;
@@ -16,13 +17,21 @@ $desktop-width: 1024px;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  box-sizing: border-box;
   font-size: 1em;
+}
+
+body {
+  font-family: sans-serif;
+  color: lighten($title-color, 20%);
 }
 
 #form {
@@ -54,4 +63,93 @@ html, body {
     font-size: 6em;
     text-shadow: 0 0 12px darken($bg-color, 20%);
   }
+}
+
+.the-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 92%;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 12px 6px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: $title-color;
+  text-shadow: 0 0 2px darken($bg-color, 20%);
+  overflow: auto;
+
+  @include tablet {
+    width: 80%;
+    padding: 16px 10px;
+  }
+
+  @include desktop {
+    width: 65%;
+    padding: 16px 12px;
+  }
+}
+
+.the-form label, .the-form textarea, .the-form input, .the-form select {
+  display: block;
+}
+
+.the-form label, .the-form textarea, .the-form input {
+  width: 100%;
+}
+
+.the-form textarea, .the-form input, .the-form select {
+  font-family: sans-serif;
+  font-size: 1em;
+  border: 2px solid $bg-color;
+  padding: 4px;
+  border-radius: 5px;
+  color: lighten($title-color, 5%);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.the-form textarea:hover, .the-form input:hover,
+.the-form textarea:focus, .the-form input:focus,
+.the-form select:hover, .the-form select:focus {
+  box-shadow: 0px 0px 2px 2px $bg-color;
+}
+
+.the-form label {
+  font-size: 1.2em;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.the-form textarea {
+  resize: none;
+}
+
+.btn {
+  background-color: lighten($bg-color, 15%);
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 6px 10px;
+  border: 2px solid $bg-color;
+  cursor: pointer;
+  color: lighten($title-color, 5%);
+  font-weight: bolder;
+}
+
+button.btn:hover {
+  background-color: $bg-color;
+  box-shadow: 0px 0px 2px 2px $bg-color;
+}
+
+.float-left-btn {
+  display: block;
+  float: left;
+  margin-right: 6px;
+}
+
+.float-right-btn {
+  display: block;
+  float: right;
+}
+
+.clearfixerz {
+  clear: both;
+  padding-top: 10px;
 }
