@@ -1,0 +1,33 @@
+{
+  "name": "capricartes",
+  "version": "1.0.0",
+  "description": "Send cool greeting cards",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode=development",
+    "prod": "webpack --mode production",
+    "test-prod": "webpack --mode production",
+    "test-build": "webpack --mode development"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^9.1.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.2",
+    "postcss-loader": "^2.1.6",
+    "precss": "^3.1.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.22.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}

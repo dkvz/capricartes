@@ -1,0 +1,57 @@
+$bg-color: #f7797d;
+$title-color: #191970;
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+#form {
+  background: #C6FFDD;
+  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+#loading {
+  display: none;
+}
+
+.main-title {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 0.2em;
+  color: $title-color;
+  font-size: 2.2em;
+  text-align: center;
+  text-shadow: 0 0 3px darken($bg-color, 20%);
+
+  @include tablet {
+    font-size: 3em;
+    text-shadow: 0 0 8px darken($bg-color, 20%);
+  }
+
+  @include desktop {
+    font-size: 6em;
+    text-shadow: 0 0 12px darken($bg-color, 20%);
+  }
+}
