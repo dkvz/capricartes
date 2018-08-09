@@ -119,6 +119,7 @@ const config = {
   ],
   devServer: {
     contentBase: contentBase,
+    historyApiFallback: true,
     publicPath: '/',
     port: 8081
   }
