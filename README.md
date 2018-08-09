@@ -30,3 +30,4 @@ Instead of inlining SVGs I used the external file but had to hardcode a fill col
 - [ ] We have to strip HTML from stuff or be careful to use innerText.
 - [ ] Add a huge neon-glow on hover over inputs and buttons.
 - [ ] Use template tags for reusable stuff that I need to insert.
+- [ ] Use a transition for the hover on buttons.
