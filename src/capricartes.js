@@ -31,7 +31,6 @@ class Capricartes {
     // Register the event listener for the form.
     this.backgroundPreview = document.getElementById('backgroundPreview');
     this.imagePreview = document.getElementById('imagePreview');
-    this.effectPreview = document.getElementById('effectPreview');
     this.slideInput = document.getElementById('slideInput');
     
     this.state.slides = [];
