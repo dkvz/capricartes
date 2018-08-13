@@ -20,8 +20,7 @@
       <textarea 
         rows="4" 
         placeholder="More text to show on your card"
-        id="slideInput">
-      </textarea>
+        id="slideInput"></textarea>
       <div class="clearfixerz"></div>
       <button class="btn float-left-btn" id="addSlideButton">Add</button>
       <button class="btn float-left-btn" id="delSlideButton">
@@ -48,15 +47,27 @@
       </div>
       <div class="preview" id="imagePreview">Preview</div>
       <div class="clearfixerz"></div>
-      <div class="background-select">
-        <label>Effect (optional):</label>
-        <select id="effectSelect">
-          <option>Select effect...</option>
-          <option>Rainbow</option>
-          <option>Particles</option>
-        </select>
-      </div>
-      <div class="preview" id="effectPreview">Preview</div>
+      <label>Effects (optional):</label>
+      <label class="chkbox-wrapper">
+        <input type="checkbox" data-effect="1" />
+        <span class="checkmark"></span>
+        <span class="chkbox-text">Rainbow</span>
+      </label>
+      <label class="chkbox-wrapper">
+        <input type="checkbox" data-effect="2" />
+        <span class="checkmark"></span>
+        <span class="chkbox-text">Glowing sun</span>
+      </label>
+      <label class="chkbox-wrapper">
+        <input type="checkbox" data-effect="3" />
+        <span class="checkmark"></span>
+        <span class="chkbox-text">Random gifs</span>
+      </label>
+      <label class="chkbox-wrapper">
+        <input type="checkbox" data-effect="4" />
+        <span class="checkmark"></span>
+        <span class="chkbox-text">Bouncing head</span>
+      </label>
       <div class="clearfixerz"></div>
       <label>Music (optional):</label>
       <div class="line-em-up">
@@ -68,11 +79,8 @@
           <img src="../static/play_filled.svg" width="16px" height="16px" />
         </button>
       </div>
+
       <div class="divider"></div>
-      <label class="chkbox-wrapper">
-        <input type="checkbox">
-        <span class="checkmark"></span>
-      </label>
       <div class="center-buttons">
         <button class="btn btn-big" id="previewButton">
           Preview!

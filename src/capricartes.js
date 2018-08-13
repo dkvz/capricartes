@@ -32,7 +32,9 @@ class Capricartes {
     this.backgroundPreview = document.getElementById('backgroundPreview');
     this.imagePreview = document.getElementById('imagePreview');
     this.slideInput = document.getElementById('slideInput');
-    
+    this.effectCheckboxes = document.querySelectorAll('[data-effect]');
+
+
     this.state.slides = [];
     
   }
