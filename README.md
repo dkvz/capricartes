@@ -62,3 +62,4 @@ Instead of inlining SVGs I used the external file but had to hardcode a fill col
 - [ ] Add a huge neon-glow on hover over inputs and buttons.
 - [ ] Use template tags for reusable stuff that I need to insert.
 - [ ] Use a transition for the hover on buttons.
+- [ ] onChange doesn't trigger when clicking the same element in a select element. I need another plan for that. The first option element should be the amount of slides. That way it should work.
