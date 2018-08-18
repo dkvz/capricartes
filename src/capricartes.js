@@ -34,6 +34,7 @@ class Capricartes {
     this.slideInput = this.document.getElementById('slideInput');
     this.effectCheckboxes = this.document.querySelectorAll('[data-effect]');
     this.slidesSelect = this.document.getElementById('slidesSelect');
+    this.slidesCount = this.document.getElementById('slidesCount');
 
     this.state.slides = [];
     
@@ -46,13 +47,20 @@ class Capricartes {
 
   addSlideClick() {
     const text = this.slideInput.value;
-    this.state.slides.push(text);
-    const opt = this.document.createElement('option');
-    opt.innerText = text.substring(0, 10) + '...';
-    this.slidesSelect.appendChild(opt);
-    this.slidesSelect.selectedIndex = this.slidesSelect.options.length - 1;
-    this.vibrateElement(this.slidesSelect);
-    this.slideInput.value = '';
+    if (text.length > 0) {
+      this.state.slides.push(text);
+      const opt = this.document.createElement('option');
+      opt.innerText = text.substring(0, 10) + '...';
+      this.slidesSelect.appendChild(opt);
+      this.slidesSelect.selectedIndex = 0;
+      this._updateSlidesCount();
+      this.vibrateElement(this.slidesSelect);
+      this.slideInput.value = '';
+    }
+  }
+
+  _updateSlidesCount() {
+    this.slidesCount.innerText = (this.state.slides.length - 1) + '&nbsp;';
   }
 
   vibrateElement(el) {
@@ -62,23 +70,26 @@ class Capricartes {
   }
 
   delSlideClick() {
-    if (this.state.slides.length > 0) {
+    if (this.state.slides.length > 1) {
       const selected = this.slidesSelect.selectedIndex;
       if (selected >= 0) {
         this.slidesSelect.remove(selected);
         this.state.slides.splice(selected, 1);
-        console.log('Current slides: ', this.state.slides);
-        this.slidesSelect.selectedIndex = -1;
+        this.slidesSelect.selectedIndex = 0;
+        this._updateSlidesCount();
         this.slideInput.value = '';
       }
     }
   }
 
   selectSlide() {
-    if (this.state.slides.length > 0)
+    if (this.state.slides.length > 1)
       this.slideInput.value = this.state.slides[
-        this.slidesSelect.selectedIndex
+        this.slidesSelect.selectedIndex - 1
       ];
+    else if (this.slidesSelect.selectedIndex = 0) {
+      this.slideInput.value = '';
+    }
   }
 
   loadGreetingCard() {
