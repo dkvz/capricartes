@@ -60,7 +60,7 @@ class Capricartes {
   }
 
   _updateSlidesCount() {
-    this.slidesCount.innerText = (this.state.slides.length - 1) + '&nbsp;';
+    this.slidesCount.innerText = (this.state.slides.length) + ' Slide(s)...';
   }
 
   vibrateElement(el) {
@@ -70,11 +70,11 @@ class Capricartes {
   }
 
   delSlideClick() {
-    if (this.state.slides.length > 1) {
+    if (this.state.slides.length > 0) {
       const selected = this.slidesSelect.selectedIndex;
-      if (selected >= 0) {
+      if (selected > 0) {
         this.slidesSelect.remove(selected);
-        this.state.slides.splice(selected, 1);
+        this.state.slides.splice(selected - 1, 1);
         this.slidesSelect.selectedIndex = 0;
         this._updateSlidesCount();
         this.slideInput.value = '';
@@ -83,13 +83,11 @@ class Capricartes {
   }
 
   selectSlide() {
-    if (this.state.slides.length > 1)
+    if (this.state.slides.length > 0)
       this.slideInput.value = this.state.slides[
         this.slidesSelect.selectedIndex - 1
       ];
-    else if (this.slidesSelect.selectedIndex = 0) {
-      this.slideInput.value = '';
-    }
+    else this.slideInput.value = '';
   }
 
   loadGreetingCard() {
