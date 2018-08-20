@@ -1,4 +1,7 @@
 
+import MovingImgEffect from './moving-img-effect';
+import capritet from '../static/capritet.png';
+
 class Capricartes {
 
   constructor(window, document) {
@@ -92,9 +95,15 @@ class Capricartes {
 
   loadGreetingCard() {
     // We need to parse all the options:
-
+    const imgEffect = new MovingImgEffect(
+      this.window,
+      this.document,
+      this.document.body,
+      capritet,
+      'capritete'
+    );
   }
 
 }
 
-module.exports = Capricartes;
+export default Capricartes;

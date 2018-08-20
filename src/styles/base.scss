@@ -301,8 +301,22 @@ section {
   animation-iteration-count: 10;
 }
 
+.scalep {
+  animation-name: scalep;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
 @keyframes vibrateW {
    0% {transform: translateX(-10px)}
    50% {transform: translateX(0)}
    100% {transform: translateX(10px)}
 }
+
+@keyframes scalep {
+  0% {transform: scale(1)}
+  50% {transform: scale(1.5)}
+  100% {transform: scale(1)}
+}
+

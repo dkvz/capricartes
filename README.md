@@ -53,6 +53,7 @@ Instead of inlining SVGs I used the external file but had to hardcode a fill col
 ```
 
 ## TODO
+- [ ] Make it so that we can give a callback to moving-img-effects constructor so that I can remove the "loading" from my slide thingy.
 - [ ] Add the rotating crapice to the title. Maybe only rotate on hover?
 - [ ] Add links to my stuff at the bottom.
 - [ ] Use border-radius on the input tags. And probably also on the buttons.
