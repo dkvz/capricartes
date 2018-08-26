@@ -1,6 +1,6 @@
 class MovingImgEffect {
 
-  constructor(window, document, parent, src, imageId) {
+  constructor(window, document, parent, src, imageId, start = false, loadedCallback = undefined) {
     this.window = window;
     this.document = document;
 
@@ -9,9 +9,11 @@ class MovingImgEffect {
     this.vy = 15;
     this.x = 0;
     this.y = 0;
+    this.loadedCallback = loadedCallback;
 
     this.loaded = false;
     this.parent = parent;
+    this.start = start;
     this.img = new Image();
     this.img.src = src;
     this.img.id = imageId;
@@ -22,7 +24,8 @@ class MovingImgEffect {
   imageLoaded() {
     // At this point we have the dimensions of the image.
     this.loaded = true;
-    this.initialize();
+    (this.loadedCallback && this.loadedCallback());
+    (this.start && this.initialize());
   }
 
   initialize() {

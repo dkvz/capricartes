@@ -1,6 +1,5 @@
 
-import MovingImgEffect from './moving-img-effect';
-import capritet from '../static/capritet.png';
+import cardStuff from './card-stuff';
 
 class Capricartes {
 
@@ -94,13 +93,8 @@ class Capricartes {
   }
 
   loadGreetingCard() {
-    // We need to parse all the options:
-    const imgEffect = new MovingImgEffect(
-      this.window,
-      this.document,
-      this.document.body,
-      capritet,
-      'capritete'
+    cardStuff.effects[0].enable(
+      this.document.body, this.window, this.document
     );
   }
 
