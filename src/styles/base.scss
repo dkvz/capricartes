@@ -296,13 +296,28 @@ section {
 
 }
 
-.vibrateW {    
-  animation-name: vibrateW;
+.vibrateW, .vibrateH, .vibrateWL, .vibrateHT {    
   animation-duration: 0.1s;
   animation-timing-function: ease-in;
   /* I think this is 0 by default. */    
   animation-delay: 0s;
   animation-iteration-count: 10;
+}
+
+.vibrateW {
+  animation-name: vibrateW;
+}
+
+.vibrateH {    
+  animation-name: vibrateH;
+}
+
+.vibrateWL {
+  animation-name: vibrateWL;
+}
+
+.vibrateHT {
+  animation-name: vibrateHT;
 }
 
 .scalep {
@@ -319,9 +334,39 @@ section {
    100% {transform: translateX(10px)}
 }
 
+@keyframes vibrateH {
+  0% {transform: translateY(-10px)}
+  50% {transform: translateY(0)}
+  100% {transform: translateY(10px)}
+}
+
+@keyframes vibrateHT {
+  0% {top: 50%}
+  25% {top: 49%}
+  50% {top: 50%}
+  75% {top: 51%}
+  100% {top: 50%}
+}
+
+@keyframes vibrateWL {
+  0% {left: 50%}
+  25% {left: 49%}
+  50% {left: 50%}
+  75% {left: 51%}
+  100% {left: 50%}
+}
+
 @keyframes scalep {
   0% {transform: scale(1)}
   50% {transform: scale(1.5)}
   100% {transform: scale(1)}
 }
 
+.center-image {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

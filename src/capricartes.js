@@ -93,9 +93,11 @@ class Capricartes {
   }
 
   loadGreetingCard() {
-    cardStuff.effects[0].enable(
+    /*cardStuff.effects[0].enable(
       this.document.body, this.window, this.document
-    );
+    );*/
+    
+    //cardStuff.foregrounds[0].enable(this.sections[0]);
   }
 
 }
