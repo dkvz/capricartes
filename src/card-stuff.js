@@ -4,7 +4,7 @@ import MovingImgEffect from './moving-img-effect';
 const imgs = {
   capriboite1: require('../static/crapic_1.png'),
   capriboite2: require('../static/crapic_2.png'),
-  capriboite2: require('../static/crapic_3.png'),
+  capriboite3: require('../static/crapic_3.png'),
   capritet: require('../static/capritet.png')
 };
 
@@ -133,24 +133,14 @@ const cardStuff = {
       'Caprice boite 1',
       imgs.capriboite1
     ),
-    {
-      name: 'Caprice boite 2',
-      preload: function(callback) {
-
-      },
-      enable: function(el, preview) {
-
-      }
-    },
-    {
-      name: 'Caprice boite 3',
-      preload: function(callback) {
-
-      },
-      enable: function(el, preview) {
-
-      }
-    }
+    cardStuffFactories.CenterImage(
+      'Caprice boite 2',
+      imgs.capriboite2
+    ),
+    cardStuffFactories.CenterImage(
+      'Caprice boite 2',
+      imgs.capriboite3
+    )
   ],
   effects: [
     {
