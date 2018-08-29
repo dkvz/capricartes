@@ -1,9 +1,18 @@
 
 export function addHtmlOption(select, text, document, value) {
   const opt = document.createElement('option');
-  opt.innerText = text;
+  opt.textContent = text;
   if (value !== undefined) opt.value = value;
   select.appendChild(opt);
 }
 
-export default { addHtmlOption };
+export function addOptionFromTemplate(element, template, text, textClass, value, valueClass, valueAttribute) {
+  const clone = template.content.cloneNode(true);
+  clone.querySelector('.' + textClass).textContent = text;
+  if (value !== undefined) {
+    clone.querySelector('.' + valueClass)[valueAttribute] = value;
+  }
+  element.appendChild(clone);
+}
+
+export default { addHtmlOption, addOptionFromTemplate };

@@ -1,6 +1,6 @@
 
 import cardStuff from './card-stuff';
-import { addHtmlOption } from './view-utils';
+import { addHtmlOption, addOptionFromTemplate } from './view-utils';
 
 class Capricartes {
 
@@ -60,6 +60,9 @@ class Capricartes {
         i
       )
     });
+
+    // Now add the effects as checkboxes:
+    
     
     this.document.getElementById('addSlideButton')
       .addEventListener('click', this.addSlideClick.bind(this));

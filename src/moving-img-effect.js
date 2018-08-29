@@ -1,3 +1,9 @@
+/**
+ * Why did I make this into a class?
+ * I have no idea. It just wrote itself as if god was
+ * whispering this code to me. I'm sure he/she/they will
+ * like the result.
+ */
 class MovingImgEffect {
 
   constructor(window, document, parent, src, imageId, start = false, loadedCallback = undefined) {
