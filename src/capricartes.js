@@ -1,5 +1,6 @@
 
 import cardStuff from './card-stuff';
+import { addHtmlOption } from './view-utils';
 
 class Capricartes {
 
@@ -36,9 +37,29 @@ class Capricartes {
     this.slideInput = this.document.getElementById('slideInput');
     this.effectCheckboxes = this.document.querySelectorAll('[data-effect]');
     this.slidesSelect = this.document.getElementById('slidesSelect');
+    this.backgroundSelect = this.document.getElementById('backgroundSelect');
+    this.imageSelect = this.document.getElementById('imageSelect');
     this.slidesCount = this.document.getElementById('slidesCount');
 
     this.state.slides = [];
+
+    // Populate the combo boxes:
+    cardStuff.backgrounds.forEach((bg, i) => {
+      addHtmlOption(
+        this.backgroundSelect,
+        bg.name,
+        this.document,
+        i
+      )
+    });
+    cardStuff.foregrounds.forEach((im, i) => {
+      addHtmlOption(
+        this.imageSelect,
+        im.name,
+        this.document,
+        i
+      )
+    });
     
     this.document.getElementById('addSlideButton')
       .addEventListener('click', this.addSlideClick.bind(this));
@@ -51,9 +72,11 @@ class Capricartes {
     const text = this.slideInput.value;
     if (text.length > 0) {
       this.state.slides.push(text);
-      const opt = this.document.createElement('option');
-      opt.innerText = text.substring(0, 10) + '...';
-      this.slidesSelect.appendChild(opt);
+      addHtmlOption(
+        this.slidesSelect,
+        text.substring(0, 10) + '...',
+        this.document
+      );
       this.slidesSelect.selectedIndex = 0;
       this._updateSlidesCount();
       this.vibrateElement(this.slidesSelect);

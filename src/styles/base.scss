@@ -362,6 +362,24 @@ section {
   100% {transform: scale(1)}
 }
 
+@keyframes cool-colors {
+  0%  {background-color: #fc102f}
+  16% {background-color: #ec72f8}
+  33% {background-color: #88f98b}
+  49% {background-color: #f8ef8a}
+  65% {background-color: #7648ff}
+  82% {background-color: #1d6d94}
+  100% {background-color: #3d31ff}
+}
+
+.bg-cool-colors {
+  animation-name: cool-color;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 .center-image {
   margin: 0;
   padding: 0;

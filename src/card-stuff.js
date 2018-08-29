@@ -3,8 +3,13 @@ import MovingImgEffect from './moving-img-effect';
 
 const imgs = {
   capriboite1: require('../static/crapic_1.png'),
+  capriboite1Pv: require('../static/crapic_1_preview.png'),
   capriboite2: require('../static/crapic_2.png'),
+  capriboite2Pv: require('../static/crapic_2_preview.png'),
   capriboite3: require('../static/crapic_3.png'),
+  capriboite3Pv: require('../static/crapic_3_preview.png'),
+  pulleurDessous: require('../static/pulleur_wp.jpg'),
+  pulleurDessousPv: require('../static/pulleur_wp_preview.jpg'),
   capritet: require('../static/capritet.png')
 };
 
@@ -25,7 +30,8 @@ const cardStuffFactories = {
     }
     ret.name = name;
     ret.enable = (el, preview) => {
-      el.className = preview ? className + '-preview' : className;
+      el.className = (preview && previewSrc) ? 
+        className + '-preview' : className;
     };
     return ret;
   },
@@ -112,34 +118,31 @@ const cardStuffFactories = {
 const cardStuff = {
 
   backgrounds: [
-    {
-      name: 'Le pulleur - Du dessous',
-      preload: function(callback) {
-        
-      },
-      enable: function(el, preview) {
-
-      }
-    },
-    {
-      name: 'Great choice of colors',
-      enable: function(el, preview) {
-
-      }
-    }
+    cardStuffFactories.BackgroundImage(
+      'Le pulleur over LACK',
+      imgs.pulleurDessous,
+      imgs.pulleurDessousPv
+    ),
+    cardStuffFactories.BackgroundCSSClass(
+      'Great choice of colors',
+      'bg-cool-colors'
+    )
   ],
   foregrounds: [
     cardStuffFactories.CenterImage(
       'Caprice boite 1',
-      imgs.capriboite1
+      imgs.capriboite1,
+      imgs.capriboite1Pv
     ),
     cardStuffFactories.CenterImage(
       'Caprice boite 2',
-      imgs.capriboite2
+      imgs.capriboite2,
+      imgs.capriboite2Pv
     ),
     cardStuffFactories.CenterImage(
-      'Caprice boite 2',
-      imgs.capriboite3
+      'Caprice boite 3',
+      imgs.capriboite3,
+      imgs.capriboite3Pv
     )
   ],
   effects: [
