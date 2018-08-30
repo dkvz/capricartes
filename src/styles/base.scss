@@ -328,6 +328,12 @@ section {
   width: 100%;
 }
 
+.spinning {
+  animation-name: spinning;
+  animation-iteration-count: infinite;
+  animation-duration: 1.2s;
+}
+
 @keyframes vibrateW {
    0% {transform: translateX(-10px)}
    50% {transform: translateX(0)}
@@ -370,6 +376,15 @@ section {
   65% {background-color: #7648ff}
   82% {background-color: #1d6d94}
   100% {background-color: #3d31ff}
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .bg-cool-colors {

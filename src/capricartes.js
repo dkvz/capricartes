@@ -1,6 +1,8 @@
 
 import cardStuff from './card-stuff';
 import { addHtmlOption, addOptionFromTemplate } from './view-utils';
+import playButton from '../static/play_filled.svg';
+import stopButton from '../static/stop_filled.svg';
 
 class Capricartes {
 
@@ -39,9 +41,14 @@ class Capricartes {
     this.slidesSelect = this.document.getElementById('slidesSelect');
     this.backgroundSelect = this.document.getElementById('backgroundSelect');
     this.imageSelect = this.document.getElementById('imageSelect');
+    this.musicSelect = this.document.getElementById('musicSelect');
     this.slidesCount = this.document.getElementById('slidesCount');
+    this.effectsDiv = this.document.getElementById('effectsDiv');
+    this.musicPreviewImg = this.document.getElementById('musicPreviewImg');
 
     this.state.slides = [];
+    this.state.selectedMusic = 0;
+    this.state.musicPlaying = false;
 
     // Populate the combo boxes:
     cardStuff.backgrounds.forEach((bg, i) => {
@@ -60,15 +67,76 @@ class Capricartes {
         i
       )
     });
+    cardStuff.tunes.forEach((m, i) => {
+      addHtmlOption(
+        this.musicSelect,
+        m.name,
+        this.document,
+        i
+      )
+    });
 
     // Now add the effects as checkboxes:
-    
+    const checkboxTemplate = this.document.getElementById('chkboxTpl');
+    cardStuff.effects.forEach((e, i) => {
+      addOptionFromTemplate(
+        this.effectsDiv,
+        checkboxTemplate,
+        e.name,
+        'chkbox-text',
+        i,
+        'data-effect'
+      );
+    });
     
     this.document.getElementById('addSlideButton')
       .addEventListener('click', this.addSlideClick.bind(this));
     this.document.getElementById('delSlideButton')
       .addEventListener('click', this.delSlideClick.bind(this));
     this.slidesSelect.addEventListener('change', this.selectSlide.bind(this));
+    this.document.getElementById('musicPreviewButton')
+      .addEventListener('click', this.previewMusicClick.bind(this));
+  }
+
+  previewMusicClick() {
+    // Check if music is currently playing:
+    if (this.audio && !this.audio.paused) {
+      this.audio.currentTime = 0;
+      this.audio.pause();
+      // Put the image back to "play":
+      this.musicPreviewImg.src = playButton;
+      this.musicPreviewImg.classList.remove('spinning');
+      this.state.musicPlaying = false;
+    } else {
+      // Let's not recycle the audio tag, 
+      // we're re-creating it.
+      // Because it's easier.
+      // I hope the garbage collector collects the garbage.
+      // Check the selected index, set it as selectedMusic 
+      // in the state.
+      if (this.musicSelect.selectedIndex != 0) {
+        this.musicPreviewImg.src = playButton;
+        this.musicPreviewImg.classList.add('spinning');
+        //this.musicPreviewImg.src = stopButton;
+        // This state thing is completely useless, why is it
+        // there?
+        this.state.musicPlaying = true;
+        this.state.selectedMusic = this.musicSelect.selectedIndex;
+        cardStuff.tunes[this.state.selectedMusic - 1].preload(
+          _ => {
+            // This event can be called when pausing...
+            // Which is a problem.
+            if (this.state.musicPlaying) {
+              this.audio = cardStuff.tunes[this.state.selectedMusic - 1].enable();
+              this.musicPreviewImg.classList.remove('spinning');
+              this.musicPreviewImg.src = stopButton;
+              this.audio.play();
+            }
+          },
+          true
+        );
+      }
+    }
   }
 
   addSlideClick() {

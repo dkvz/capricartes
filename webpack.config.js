@@ -114,7 +114,8 @@ const config = {
     }),
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([
-      { from: 'webroot', to: '' }
+      { from: 'webroot', to: '' },
+      { from: 'static/music', to: 'static/music' }
     ])
   ],
   devServer: {

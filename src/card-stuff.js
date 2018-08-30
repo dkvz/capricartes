@@ -97,6 +97,28 @@ const cardStuffFactories = {
     };
     return ret;
   },
+  Music: function(name, src) {
+    const ret = {};
+    ret.name = name;
+    const pload = (callback, preview) => {
+      const audio = new Audio();
+      callback && audio.addEventListener(
+        preview ? 'canplay' : 'canplaythrough', 
+        callback
+      );
+      audio.src = src;
+      return audio;
+    };
+    ret.preload = (callback, preview) => {
+      this.audio = pload(_ => {
+        callback && callback();
+      }, preview);
+    };
+    ret.enable = _ => {
+      return this.audio ? this.audio : pload();
+    };
+    return ret;
+  },
 
   getImagePromise: function(src, callback) {
     return new Promise((resolve, reject) => {
@@ -177,6 +199,28 @@ const cardStuff = {
       }
     }
   ],
+  tunes: [
+    cardStuffFactories.Music(
+      'My Heart Will Go On TECHNO',
+      'static/music/my_heart_will_go_on.mp3'
+    ),
+    cardStuffFactories.Music(
+      'Green T & The Sushi Platters',
+      'static/music/day_tentacle_green_t_and_the_sushi_platters.mp3'
+    ),
+    cardStuffFactories.Music(
+      'El Condor Pasa',
+      'static/music/el_condor_pasa.mp3'
+    ),
+    cardStuffFactories.Music(
+      'Ave Maria',
+      'static/music/ave_maria.mp3'
+    ),
+    cardStuffFactories.Music(
+      'Santa is coming',
+      'static/music/santa_jazz.mp3'
+    )
+  ]
 
 };
 

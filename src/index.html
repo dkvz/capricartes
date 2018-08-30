@@ -47,27 +47,8 @@
       <div class="preview" id="imagePreview">Preview</div>
       <div class="clearfixerz"></div>
       <label>Effects (optional):</label>
-      <div id="effects">
-        <label class="chkbox-wrapper">
-          <input type="checkbox" data-effect="1" />
-          <span class="checkmark"></span>
-          <span class="chkbox-text">Rainbow</span>
-        </label>
-        <label class="chkbox-wrapper">
-          <input type="checkbox" data-effect="2" />
-          <span class="checkmark"></span>
-          <span class="chkbox-text">Glowing sun</span>
-        </label>
-        <label class="chkbox-wrapper">
-          <input type="checkbox" data-effect="3" />
-          <span class="checkmark"></span>
-          <span class="chkbox-text">Random gifs</span>
-        </label>
-        <label class="chkbox-wrapper">
-          <input type="checkbox" data-effect="4" />
-          <span class="checkmark"></span>
-          <span class="chkbox-text">Bouncing head</span>
-        </label>
+      <div id="effectsDiv">
+        
       </div>
       <template id="chkboxTpl">
         <label class="chkbox-wrapper">
@@ -81,10 +62,12 @@
       <div class="line-em-up">
         <select id="musicSelect">
           <option>Select music...</option>
-          <option>Super music</option>
         </select>
         <button class="btn" id="musicPreviewButton">
-          <img src="../static/play_filled.svg" width="16px" height="16px" />
+          <img id="musicPreviewImg" 
+            src="../static/play_filled.svg" 
+            width="20px" 
+            height="20px" />
         </button>
       </div>
 

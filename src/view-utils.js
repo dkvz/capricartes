@@ -6,11 +6,11 @@ export function addHtmlOption(select, text, document, value) {
   select.appendChild(opt);
 }
 
-export function addOptionFromTemplate(element, template, text, textClass, value, valueClass, valueAttribute) {
+export function addOptionFromTemplate(element, template, text, textClass, value, valueAttribute) {
   const clone = template.content.cloneNode(true);
   clone.querySelector('.' + textClass).textContent = text;
   if (value !== undefined) {
-    clone.querySelector('.' + valueClass)[valueAttribute] = value;
+    clone.querySelector('[' + valueAttribute + ']')[valueAttribute] = value;
   }
   element.appendChild(clone);
 }
