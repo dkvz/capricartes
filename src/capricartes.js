@@ -27,9 +27,13 @@ class Capricartes {
       this.loadGreetingCard();
     } else {
       // Show the form.
-      this.showSection('form');
-      this.initFormControls();
+      this.showForm();
     }
+  }
+
+  showForm() {
+    this.showSection('form');
+    this.initFormControls();
   }
 
   initFormControls() {
@@ -192,6 +196,54 @@ class Capricartes {
     );*/
     
     //cardStuff.foregrounds[0].enable(this.sections[0]);
+
+    // We can use atob to decode h264 text from the URL.
+    // Params to look for in URL:
+    /**
+     * t: Title
+     * s: Slides, can appear multiple times
+     * b: Background
+     * f: Foreground
+     * e: Effects (comma separated)
+     */
+    if (this.window.location.search) {
+      this.state.slides = [];
+      const params = this.window.location.search.substring(1).split('&');
+      // Cycle through params, split again, check if second element
+      // exists, check if it's not empty.
+      for (const param in params) {
+        const p = param.split('=');
+        if (p && p.length === 2) {
+          switch(p[0]) {
+            case 't':
+              this.state.title = atob(p[1]);
+              break;
+            case 's':
+              this.state.slides.push(atob(p[1]));
+              break;
+            case 'b':
+              // Check if that background does
+              // exist first:
+              
+              break;
+            case 'f':
+
+              break;
+            case 'e':
+
+          }
+        }
+      }
+      // It's important to not be able to add
+      // actual HTML to the page.
+
+      this.showSection('card');
+      return;
+    }
+
+    // Revert to showing the form:
+    this.showForm();
+    
   }
 
 }
