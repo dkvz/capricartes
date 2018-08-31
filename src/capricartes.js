@@ -1,11 +1,9 @@
-
 import cardStuff from './card-stuff';
 import { addHtmlOption, addOptionFromTemplate } from './view-utils';
 import playButton from '../static/play_filled.svg';
 import stopButton from '../static/stop_filled.svg';
 
 class Capricartes {
-
   constructor(window, document) {
     this.window = window;
     this.document = document;
@@ -14,8 +12,8 @@ class Capricartes {
   }
 
   showSection(name) {
-    this.sections.forEach((s) => {
-      s.style.display = (s.id === name) ? '' : 'none';
+    this.sections.forEach(s => {
+      s.style.display = s.id === name ? '' : 'none';
     });
   }
 
@@ -23,12 +21,14 @@ class Capricartes {
     if (this.window.location.pathname == '/crapic') {
       // The actual greeting card.
       // Requires a loading screen.
-      this.showSection('loading');
-      this.loadGreetingCard();
-    } else {
-      // Show the form.
-      this.showForm();
+      if (this.window.location.search) {
+        this.cardFromUrl();
+        this.loadGreetingCard();
+        return;
+      }
     }
+    // Show the form.
+    this.showForm();
   }
 
   showForm() {
@@ -56,28 +56,13 @@ class Capricartes {
 
     // Populate the combo boxes:
     cardStuff.backgrounds.forEach((bg, i) => {
-      addHtmlOption(
-        this.backgroundSelect,
-        bg.name,
-        this.document,
-        i
-      )
+      addHtmlOption(this.backgroundSelect, bg.name, this.document, i);
     });
     cardStuff.foregrounds.forEach((im, i) => {
-      addHtmlOption(
-        this.imageSelect,
-        im.name,
-        this.document,
-        i
-      )
+      addHtmlOption(this.imageSelect, im.name, this.document, i);
     });
     cardStuff.tunes.forEach((m, i) => {
-      addHtmlOption(
-        this.musicSelect,
-        m.name,
-        this.document,
-        i
-      )
+      addHtmlOption(this.musicSelect, m.name, this.document, i);
     });
 
     // Now add the effects as checkboxes:
@@ -92,13 +77,16 @@ class Capricartes {
         'data-effect'
       );
     });
-    
-    this.document.getElementById('addSlideButton')
+
+    this.document
+      .getElementById('addSlideButton')
       .addEventListener('click', this.addSlideClick.bind(this));
-    this.document.getElementById('delSlideButton')
+    this.document
+      .getElementById('delSlideButton')
       .addEventListener('click', this.delSlideClick.bind(this));
     this.slidesSelect.addEventListener('change', this.selectSlide.bind(this));
-    this.document.getElementById('musicPreviewButton')
+    this.document
+      .getElementById('musicPreviewButton')
       .addEventListener('click', this.previewMusicClick.bind(this));
   }
 
@@ -112,11 +100,11 @@ class Capricartes {
       this.musicPreviewImg.classList.remove('spinning');
       this.state.musicPlaying = false;
     } else {
-      // Let's not recycle the audio tag, 
+      // Let's not recycle the audio tag,
       // we're re-creating it.
       // Because it's easier.
       // I hope the garbage collector collects the garbage.
-      // Check the selected index, set it as selectedMusic 
+      // Check the selected index, set it as selectedMusic
       // in the state.
       if (this.musicSelect.selectedIndex != 0) {
         this.musicPreviewImg.src = playButton;
@@ -126,19 +114,16 @@ class Capricartes {
         // there?
         this.state.musicPlaying = true;
         this.state.selectedMusic = this.musicSelect.selectedIndex;
-        cardStuff.tunes[this.state.selectedMusic - 1].preload(
-          _ => {
-            // This event can be called when pausing...
-            // Which is a problem.
-            if (this.state.musicPlaying) {
-              this.audio = cardStuff.tunes[this.state.selectedMusic - 1].enable();
-              this.musicPreviewImg.classList.remove('spinning');
-              this.musicPreviewImg.src = stopButton;
-              this.audio.play();
-            }
-          },
-          true
-        );
+        cardStuff.tunes[this.state.selectedMusic - 1].preload(_ => {
+          // This event can be called when pausing...
+          // Which is a problem.
+          if (this.state.musicPlaying) {
+            this.audio = cardStuff.tunes[this.state.selectedMusic - 1].enable();
+            this.musicPreviewImg.classList.remove('spinning');
+            this.musicPreviewImg.src = stopButton;
+            this.audio.play();
+          }
+        }, true);
       }
     }
   }
@@ -160,7 +145,7 @@ class Capricartes {
   }
 
   _updateSlidesCount() {
-    this.slidesCount.innerText = (this.state.slides.length) + ' Slide(s)...';
+    this.slidesCount.innerText = this.state.slides.length + ' Slide(s)...';
   }
 
   vibrateElement(el) {
@@ -190,13 +175,7 @@ class Capricartes {
     else this.slideInput.value = '';
   }
 
-  loadGreetingCard() {
-    /*cardStuff.effects[0].enable(
-      this.document.body, this.window, this.document
-    );*/
-    
-    //cardStuff.foregrounds[0].enable(this.sections[0]);
-
+  cardFromUrl() {
     // We can use atob to decode h264 text from the URL.
     // Params to look for in URL:
     /**
@@ -206,44 +185,112 @@ class Capricartes {
      * f: Foreground
      * e: Effects (comma separated)
      */
-    if (this.window.location.search) {
-      this.state.slides = [];
-      const params = this.window.location.search.substring(1).split('&');
-      // Cycle through params, split again, check if second element
-      // exists, check if it's not empty.
-      for (const param in params) {
-        const p = param.split('=');
-        if (p && p.length === 2) {
-          switch(p[0]) {
-            case 't':
-              this.state.title = atob(p[1]);
-              break;
-            case 's':
-              this.state.slides.push(atob(p[1]));
-              break;
-            case 'b':
-              // Check if that background does
-              // exist first:
-              
-              break;
-            case 'f':
-
-              break;
-            case 'e':
-
-          }
+    // Reset everything in case we're re-using this function:
+    delete this.state.title;
+    delete this.state.music;
+    delete this.state.foreground;
+    delete this.state.background;
+    this.state.effects = [];
+    this.state.slides = [];
+    const params = this.window.location.search.substring(1).split('&');
+    // Cycle through params, split again, check if second element
+    // exists, check if it's not empty.
+    params.forEach((param) => {
+      const p = param.split('=');
+      if (p && p.length === 2) {
+        switch (p[0]) {
+          case 't':
+            this.state.title = atob(p[1]);
+            break;
+          case 's':
+            this.state.slides.push(atob(p[1]));
+            break;
+          case 'b':
+            let bid = Number(p[1]);
+            if (isNaN(bid) || !cardStuff.backgrounds[bid]) bid = 0;
+            this.state.background = bid;
+            break;
+          case 'f':
+            let fid = Number(p[1]);
+            if (!isNaN(fid) && cardStuff.foregrounds[fid]) 
+              this.state.foreground = fid;
+            break;
+          case 'e':
+            // We can have a coma separated list of effects.
+            // We should also check that they exist.
+            const effects = p[1].split(',');
+            effects.forEach(e => {
+              const n = Number(e);
+              if (!isNaN(n) && cardStuff.effects[n]) {
+                this.state.effects.push(n);
+              }
+            });
+            break;
+          case 'm':
+            let mid = Number(p[1]);
+            if (!isNaN(mid) || cardStuff.tunes[mid])
+              this.state.music = mid;
         }
       }
-      // It's important to not be able to add
-      // actual HTML to the page.
+    });
+  }
 
-      this.showSection('card');
-      return;
+  loadGreetingCard() {
+    /*cardStuff.effects[0].enable(
+      this.document.body, this.window, this.document
+    );*/
+
+    //cardStuff.foregrounds[0].enable(this.sections[0]);
+
+    this.showSection('loading');
+    // It's important to not be able to add
+    // actual HTML to the page.
+    let promises = [];
+    // Background is always present, we use the "0" if nothing
+    // was provided.
+    if (this.state.background === undefined) this.state.background = 0;
+    if (cardStuff.backgrounds[this.state.background].preload)
+      promises.push(cardStuff.backgrounds[this.state.background].preload());
+    if (this.state.foreground !== undefined) 
+      if (cardStuff.foregrounds[this.state.foreground].preload)
+        promises.push(cardStuff.foregrounds[this.state.foreground].preload());
+    if (this.state.effects) {
+      this.state.effects.forEach(e => {
+        if (cardStuff.effects[e].preload)
+          promises.push(cardStuff.effects[e].preload());
+      });
     }
-
-    // Revert to showing the form:
-    this.showForm();
+    if (this.state.music !== undefined) 
+      promises.push(cardStuff.tunes[this.state.music]);
     
+    Promise.all(promises).then(_ => {
+      this.showGreetingCard();
+    });
+  }
+
+  showGreetingCard() {
+    const section = this.sections[2];
+    cardStuff.backgrounds[this.state.background !== undefined ? this.state.background : 0].enable(section);
+    this.showSection('card');
+    if (this.state.title) {
+      const cardTitle = this.document.createElement('h1');
+      cardTitle.className = 'main-title';
+      cardTitle.textContent = this.state.title;
+      section.appendChild(cardTitle);
+    }
+    // TODO Add the slides:
+
+    if (this.state.foreground !== undefined) 
+      cardStuff.foregrounds[this.state.foreground].enable(section);
+    if (this.state.effects) 
+      this.state.effects.forEach(e => {
+        cardStuff.effects[e].enable(section, this.window, this.document);
+      });
+    if (this.state.music !== undefined) {
+      const audio = cardStuff.tunes[this.state.music].enable();
+      section.appendChild(audio);
+      audio.play();
+    }
   }
 
 }

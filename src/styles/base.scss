@@ -41,14 +41,14 @@ body {
 }
 
 section {
-  background: #C6FFDD;
-  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
   overflow: auto;
   height: 100%;
   width: 100%;
 }
 
-#loading {
+#loading, #form {
+  background: #C6FFDD;
+  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
   overflow: hidden;
 }
 
@@ -368,7 +368,7 @@ section {
   100% {transform: scale(1)}
 }
 
-@keyframes cool-colors {
+@keyframes coolColors {
   0%  {background-color: #fc102f}
   16% {background-color: #ec72f8}
   33% {background-color: #88f98b}
@@ -388,7 +388,7 @@ section {
 }
 
 .bg-cool-colors {
-  animation-name: cool-color;
+  animation-name: coolColors;
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;

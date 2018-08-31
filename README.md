@@ -53,6 +53,7 @@ Instead of inlining SVGs I used the external file but had to hardcode a fill col
 ```
 
 ## TODO
+- [ ] Double check that we can't actually add HTML code to the pages using the URL.
 - [ ] Make it so that we can give a callback to moving-img-effects constructor so that I can remove the "loading" from my slide thingy.
 - [ ] Test using special characters (emojis) in slides or the title, in all browsers.
 - [ ] Add the rotating crapice to the title. Maybe only rotate on hover?
