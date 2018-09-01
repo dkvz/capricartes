@@ -170,7 +170,7 @@ const cardStuff = {
   effects: [
     {
       name: 'Bouncing head',
-      preload: function(callback) {
+      preload: function(callback, el, window, document) {
         return new Promise((resolve, reject) => {
           this.imgEffect = new MovingImgEffect(
             window,

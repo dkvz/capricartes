@@ -257,7 +257,13 @@ class Capricartes {
     if (this.state.effects) {
       this.state.effects.forEach(e => {
         if (cardStuff.effects[e].preload)
-          promises.push(cardStuff.effects[e].preload());
+          promises.push(cardStuff.effects[e].preload(
+            undefined, 
+            this.sections[2], 
+            this.window,
+            this.document
+          )
+        );
       });
     }
     if (this.state.music !== undefined) 

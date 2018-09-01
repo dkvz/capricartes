@@ -21,10 +21,10 @@ class MovingImgEffect {
     this.parent = parent;
     this.start = start;
     this.img = new Image();
+    this.img.addEventListener('load', this.imageLoaded.bind(this));
     this.img.src = src;
     this.img.id = imageId;
     this.img.style.position = 'absolute';
-    this.img.addEventListener("load", this.imageLoaded.bind(this));
   }
 
   imageLoaded() {
