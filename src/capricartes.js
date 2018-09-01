@@ -2,6 +2,7 @@ import cardStuff from './card-stuff';
 import { addHtmlOption, addOptionFromTemplate } from './view-utils';
 import playButton from '../static/play_filled.svg';
 import stopButton from '../static/stop_filled.svg';
+import Slides from './slides';
 
 class Capricartes {
   constructor(window, document) {
@@ -26,6 +27,15 @@ class Capricartes {
         this.loadGreetingCard();
         return;
       }
+    } else if (this.window.location.pathname == '/secret') {
+      this.showSection('card');
+      const slidesComp = new Slides(
+        ['Les pomme de terre sont gentilles '.repeat(8)],
+        this.document.getElementById('slidesTpl'),
+        this.document
+      );
+      slidesComp.attach(this.sections[2]);
+      return;
     }
     // Show the form.
     this.showForm();

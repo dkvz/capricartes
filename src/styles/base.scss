@@ -403,3 +403,50 @@ section {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.slides {
+  /* box-sizing is super important here. */
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 16px;
+  border-radius: 3%;
+  width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+  background-color: slateblue;
+  color: white;
+  box-shadow: 0px 0px 8px 5px #333;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    width: 78%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @include desktop {
+    width: 480px;
+    max-height: 250px;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.right {
+  float: right;
+}
+
+.slide {
+  clear: both;
+  flex-grow: 1;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-y: auto;
+}
+
+svg[data-action] {
+  cursor: pointer;
+}
