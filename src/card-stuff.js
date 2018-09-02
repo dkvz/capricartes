@@ -49,10 +49,11 @@ const cardStuffFactories = {
     ret.name = name;
     ret.enable = (el, preview) => {
       el.style.backgroundRepeat = 'no-repeat';
-      el.style.backgroundAttachment = 'fixed';
+      if (!preview) el.style.backgroundAttachment = 'fixed';
       el.style.backgroundPosition = 'center';
       el.style.backgroundSize = 'cover';
-      el.style.backgroundImage = `url('${preview ? previewSrc : src}')`;
+      el.style.backgroundImage = 
+        'url("' + (preview ? previewSrc : src) + '")';
     } 
     return ret;
   },
