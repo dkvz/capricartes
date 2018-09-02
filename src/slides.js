@@ -5,7 +5,7 @@ class Slides {
     this.document = document;
     this.transformDuration = 1.2;
     // template.content is a documentFragment, and inserting a 
-    // document fragment completely empties it.
+    // document fragment using appendChild completely empties it.
     // I wanted to keep references to the nodes in the current object,
     // so I have to get the direct child element inside the template
     // and use that as the 'dom'.
@@ -100,6 +100,10 @@ class Slides {
   }
 
   attach(element) {
+    // If it's already there, remove it then insert it
+    // again.
+    const sl = element.querySelector('.slides');
+    if (sl) element.removeChild(sl);
     element.appendChild(this.dom);
   } 
 

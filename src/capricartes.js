@@ -19,6 +19,7 @@ class Capricartes {
   }
 
   init() {
+    this.slidesTemplate = this.document.getElementById('slidesTpl');
     if (this.window.location.pathname == '/crapic') {
       // The actual greeting card.
       // Requires a loading screen.
@@ -32,7 +33,7 @@ class Capricartes {
       const slidesComp = new Slides(
         ['Les pomme de terre sont gentilles '.repeat(8),
         'Machin bidule'.repeat(3)],
-        this.document.getElementById('slidesTpl'),
+        this.slidesTemplate,
         this.document
       );
       slidesComp.attach(this.sections[2]);
@@ -48,6 +49,11 @@ class Capricartes {
   }
 
   initFormControls() {
+    // TODO I initially thought this method would be called only once
+    // but since I'm considering implementing pushstat that might no 
+    // longer be the case.
+    // We should check whether we really need register the form elements.
+
     // Register the event listener for the form.
     this.backgroundPreview = this.document.getElementById('backgroundPreview');
     this.imagePreview = this.document.getElementById('imagePreview');
@@ -295,7 +301,16 @@ class Capricartes {
       cardTitle.textContent = this.state.title;
       section.appendChild(cardTitle);
     }
-    // TODO Add the slides:
+
+    // Add the slides:
+    if (this.state.slides && this.state.slides.length > 0) {
+      const slidesComp = new Slides(
+        this.state.slides, 
+        this.slidesTemplate, 
+        this.document
+      );
+      slidesComp.attach(section);
+    }
 
     if (this.state.foreground !== undefined) 
       cardStuff.foregrounds[this.state.foreground].enable(section);
