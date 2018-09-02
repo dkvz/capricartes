@@ -3,6 +3,7 @@ class Slides {
   constructor(slides, template, document) {
     this.slides = slides;
     this.document = document;
+    this.translateSize = 100;
     this.dom = template.content.cloneNode(true);
     // Bind everything:
     this.dom.querySelector('[data-action="close"]')
@@ -18,14 +19,16 @@ class Slides {
     this.slideNodes = this.slides.map((s, i) => {
       const nel = this.document.createElement('div');
       nel.textContent = s;
+      slidesEl.appendChild(nel);
+      nel.style.transition = 'transform 2s';
       if (i === 0) {
         // Only the first element has to be on top
         // and shown.
+        nel.style.transform = 'translateX(' + this.translateSize + 'px)';
         this._applyShownState(nel);
       } else {
         this._applyHiddenState(nel);
       }
-      slidesEl.appendChild(nel);
       return nel;
     });
     
@@ -38,6 +41,7 @@ class Slides {
 
   _applyShownState(el) {
     el.style.zIndex = 2;
+    el.style.transform = 'translateX(0px)';
   }
 
   _applyHiddenState(el) {
