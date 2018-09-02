@@ -419,6 +419,7 @@ section {
   padding: 15px;
   display: flex;
   flex-direction: column;
+  transition: opacity 1s;
 
   @include tablet {
     width: 78%;
@@ -445,6 +446,7 @@ section {
   padding-left: 10px;
   padding-right: 10px;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   background-color: inherit;
 
