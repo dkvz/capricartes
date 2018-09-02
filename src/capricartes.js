@@ -1,5 +1,5 @@
 import cardStuff from './card-stuff';
-import { addHtmlOption, addOptionFromTemplate } from './view-utils';
+import { addHtmlOption, addOptionFromTemplate, removeNodesFromElement } from './view-utils';
 import playButton from '../static/play_filled.svg';
 import stopButton from '../static/stop_filled.svg';
 import Slides from './slides';
@@ -32,7 +32,7 @@ class Capricartes {
       this.showSection('card');
       const slidesComp = new Slides(
         ['Les pomme de terre sont gentilles '.repeat(8),
-        'Machin bidule'.repeat(3)],
+        'Machin bidule '.repeat(3)],
         this.slidesTemplate,
         this.document
       );
@@ -95,6 +95,9 @@ class Capricartes {
       );
     });
 
+    this.backgroundSelect.addEventListener('change', this._previewBackground.bind(this));
+    this.imageSelect.addEventListener('change', this._previewImage.bind(this));
+
     this.document
       .getElementById('addSlideButton')
       .addEventListener('click', this.addSlideClick.bind(this));
@@ -105,6 +108,67 @@ class Capricartes {
     this.document
       .getElementById('musicPreviewButton')
       .addEventListener('click', this.previewMusicClick.bind(this));
+  }
+
+  _previewBackground() {
+    if (this.backgroundSelect.selectedIndex !== 0) {
+      this.backgroundPreview.textContent = 'Loading...';
+      const index = this.backgroundSelect.selectedIndex - 1;
+      // This thing has both a callback and returns a promise
+      // because I wanted to use Promise.all but get a callback
+      // for individual promises. I know that's not an excuse. Uh...
+      if (cardStuff.backgrounds[index].preload) {
+        cardStuff.backgrounds[index]
+          .preload(undefined, true)
+          .then(this._activatePreview(
+            this.backgroundPreview,
+            cardStuff.backgrounds[index].enable
+          ));
+      } else {
+        this._activatePreview(
+          this.backgroundPreview,
+          cardStuff.backgrounds[index].enable
+        )
+      }
+    } else {
+      this._resetPreview(this.backgroundPreview, 'Preview');
+    }
+  }
+
+  _activatePreview(el, enableFunction) {
+    // Reset the preview:
+    this._resetPreview(el, '');
+    enableFunction(el, true);
+  }
+
+  _resetPreview(el, text) {
+    // Reset the preview:
+    removeNodesFromElement(el);
+    el.style.background = '';
+    el.className = 'preview';
+    el.textContent = text;
+  }
+
+  _previewImage() {
+    if (this.imageSelect.selectedIndex !== 0) {
+      this.imagePreview.textContent = 'Loading...';
+      const index = this.imageSelect.selectedIndex - 1;
+      if (cardStuff.foregrounds[index].preload) {
+        cardStuff.foregrounds[index]
+          .preload(undefined, true)
+          .then(this._activatePreview(
+            this.imagePreview,
+            cardStuff.foregrounds[index].enable
+          ));
+      } else {
+        this._activatePreview(
+          this.imagePreview,
+          cardStuff.foregrounds[index].enable
+        )
+      }
+    } else {
+      this._resetPreview(this.imagePreview, 'Preview');
+    }
   }
 
   previewMusicClick() {

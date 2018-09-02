@@ -15,4 +15,10 @@ export function addOptionFromTemplate(element, template, text, textClass, value,
   element.appendChild(clone);
 }
 
-export default { addHtmlOption, addOptionFromTemplate };
+export function removeNodesFromElement(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
+export default { addHtmlOption, addOptionFromTemplate, removeNodesFromElement };

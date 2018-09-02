@@ -30,8 +30,8 @@ const cardStuffFactories = {
     }
     ret.name = name;
     ret.enable = (el, preview) => {
-      el.className = (preview && previewSrc) ? 
-        className + '-preview' : className;
+      el.classList.add((preview && previewSrc) ? 
+        className + '-preview' : className);
     };
     return ret;
   },

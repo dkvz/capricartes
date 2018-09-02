@@ -49,6 +49,9 @@ section {
 #loading, #form {
   background: #C6FFDD;
   background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+}
+
+#loading {
   overflow: hidden;
 }
 
@@ -196,6 +199,8 @@ section {
   padding-top: 22px;
   margin-top: 16px;
   float: right;
+  position: relative;
+  overflow: hidden;
 }
 
 .background-select {
@@ -398,7 +403,7 @@ section {
 .center-image {
   margin: 0;
   padding: 0;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
