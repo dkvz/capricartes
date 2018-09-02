@@ -30,7 +30,8 @@ class Capricartes {
     } else if (this.window.location.pathname == '/secret') {
       this.showSection('card');
       const slidesComp = new Slides(
-        ['Les pomme de terre sont gentilles '.repeat(8)],
+        ['Les pomme de terre sont gentilles '.repeat(8),
+        'Machin bidule'.repeat(3)],
         this.document.getElementById('slidesTpl'),
         this.document
       );
