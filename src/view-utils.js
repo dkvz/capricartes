@@ -10,7 +10,7 @@ export function addOptionFromTemplate(element, template, text, textClass, value,
   const clone = template.content.cloneNode(true);
   clone.querySelector('.' + textClass).textContent = text;
   if (value !== undefined) {
-    clone.querySelector('[' + valueAttribute + ']')[valueAttribute] = value;
+    clone.querySelector('input').setAttribute(valueAttribute, value);
   }
   element.appendChild(clone);
 }

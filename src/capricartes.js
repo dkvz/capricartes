@@ -25,7 +25,7 @@ class Capricartes {
       // Requires a loading screen.
       if (this.window.location.search) {
         this.cardFromUrl();
-        this.loadGreetingCard();
+        this.loadGreetingCard(this.sections[2]);
         return;
       }
     } else if (this.window.location.pathname == '/secret') {
@@ -55,10 +55,10 @@ class Capricartes {
     // We should check whether we really need register the form elements.
 
     // Register the event listener for the form.
+    this.titleInput = this.document.getElementById('titleInput');
     this.backgroundPreview = this.document.getElementById('backgroundPreview');
     this.imagePreview = this.document.getElementById('imagePreview');
     this.slideInput = this.document.getElementById('slideInput');
-    this.effectCheckboxes = this.document.querySelectorAll('[data-effect]');
     this.slidesSelect = this.document.getElementById('slidesSelect');
     this.backgroundSelect = this.document.getElementById('backgroundSelect');
     this.imageSelect = this.document.getElementById('imageSelect');
@@ -108,6 +108,11 @@ class Capricartes {
     this.document
       .getElementById('musicPreviewButton')
       .addEventListener('click', this.previewMusicClick.bind(this));
+    this.document
+      .getElementById('previewButton')
+      .addEventListener('click', _ => {
+        this.cardFromForm();
+      });
   }
 
   _previewBackground() {
@@ -256,6 +261,16 @@ class Capricartes {
     else this.slideInput.value = '';
   }
 
+  _resetState() {
+    delete this.state.title;
+    delete this.state.music;
+    delete this.state.foreground;
+    delete this.state.background;
+    this.state.effects = [];
+    // We don't reset slides on purpose as they are used
+    // in the form.
+  }
+
   cardFromUrl() {
     // We can use atob to decode h264 text from the URL.
     // Params to look for in URL:
@@ -267,11 +282,7 @@ class Capricartes {
      * e: Effects (comma separated)
      */
     // Reset everything in case we're re-using this function:
-    delete this.state.title;
-    delete this.state.music;
-    delete this.state.foreground;
-    delete this.state.background;
-    this.state.effects = [];
+    this._resetState();
     this.state.slides = [];
     const params = this.window.location.search.substring(1).split('&');
     // Cycle through params, split again, check if second element
@@ -316,13 +327,28 @@ class Capricartes {
     });
   }
 
-  loadGreetingCard() {
-    /*cardStuff.effects[0].enable(
-      this.document.body, this.window, this.document
-    );*/
+  cardFromForm() {
+    this._resetState();
+    // this.state.slides is supposed to be already set.
+    this.state.title = this.titleInput.value;
+    if (this.backgroundSelect.selectedIndex > 0) 
+      this.state.background = this.backgroundSelect.selectedIndex - 1;
+    if (this.imageSelect.selectedIndex > 0) 
+      this.state.foreground = this.imageSelect.selectedIndex - 1;
+    if (this.musicSelect.selectedIndex > 0) {
+      this.state.music = this.musicSelect.selectedIndex - 1;
+    }
+    // Browse the effect checkboxes:
+    const chkboxes = this.document.querySelectorAll('[data-effect]');
+    this.state.effects = [];
+    if (chkboxes) {
+      chkboxes.forEach(c => {
+        if (c.checked) this.state.effects.push(c.getAttribute('data-effect'));
+      });
+    }
+  }
 
-    //cardStuff.foregrounds[0].enable(this.sections[0]);
-
+  loadGreetingCard(el) {
     this.showSection('loading');
     // It's important to not be able to add
     // actual HTML to the page.
@@ -340,7 +366,7 @@ class Capricartes {
         if (cardStuff.effects[e].preload)
           promises.push(cardStuff.effects[e].preload(
             undefined, 
-            this.sections[2], 
+            el, 
             this.window,
             this.document
           )
@@ -351,19 +377,20 @@ class Capricartes {
       promises.push(cardStuff.tunes[this.state.music]);
     
     Promise.all(promises).then(_ => {
-      this.showGreetingCard();
+      this.showGreetingCard(el);
     });
   }
 
-  showGreetingCard() {
-    const section = this.sections[2];
-    cardStuff.backgrounds[this.state.background !== undefined ? this.state.background : 0].enable(section);
+  showGreetingCard(el) {
+    cardStuff.backgrounds[
+      this.state.background !== undefined ? this.state.background : 0
+    ].enable(el);
     this.showSection('card');
     if (this.state.title) {
       const cardTitle = this.document.createElement('h1');
       cardTitle.className = 'main-title';
       cardTitle.textContent = this.state.title;
-      section.appendChild(cardTitle);
+      el.appendChild(cardTitle);
     }
 
     // Add the slides:
@@ -373,18 +400,18 @@ class Capricartes {
         this.slidesTemplate, 
         this.document
       );
-      slidesComp.attach(section);
+      slidesComp.attach(el);
     }
 
     if (this.state.foreground !== undefined) 
-      cardStuff.foregrounds[this.state.foreground].enable(section);
+      cardStuff.foregrounds[this.state.foreground].enable(el);
     if (this.state.effects) 
       this.state.effects.forEach(e => {
-        cardStuff.effects[e].enable(section, this.window, this.document);
+        cardStuff.effects[e].enable(el, this.window, this.document);
       });
     if (this.state.music !== undefined) {
       const audio = cardStuff.tunes[this.state.music].enable();
-      section.appendChild(audio);
+      el.appendChild(audio);
       audio.play();
     }
   }
