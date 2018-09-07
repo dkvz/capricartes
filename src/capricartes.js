@@ -66,6 +66,10 @@ class Capricartes {
     this.slidesCount = this.document.getElementById('slidesCount');
     this.effectsDiv = this.document.getElementById('effectsDiv');
     this.musicPreviewImg = this.document.getElementById('musicPreviewImg');
+    this.loadingModal = this.document.getElementById('loadingModal');
+    this.loadingModal.querySelector('.close').addEventListener('click', _ => {
+      this.loadingModal.style.display = 'none';
+    });
 
     this.state.slides = [];
     this.state.selectedMusic = 0;
@@ -112,7 +116,14 @@ class Capricartes {
       .getElementById('previewButton')
       .addEventListener('click', _ => {
         this.cardFromForm();
+        this.showLoadingModal();
       });
+
+  }
+
+  showLoadingModal() {
+    if (this.loadingModal) 
+      this.loadingModal.style.display = 'block';
   }
 
   _previewBackground() {
