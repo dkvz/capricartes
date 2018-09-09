@@ -159,7 +159,6 @@ section {
   padding: 10px 20px;
   font-size: 1.2em;
   width: 88%;
-  margin-bottom: 12px;
   
   @include tablet {
     width: auto;
@@ -523,14 +522,16 @@ svg[data-action] {
 }
 
 .modal-header, .modal-footer {
-  padding: 2px 6px;
+  padding: 8px;
   background-color: $bg-color;
+  text-align: center;
 }
 
 .modal-body {
   background-color: $golderz;
   background: linear-gradient(to right, $bg-color, $golderz, $greenerz);
   padding: 2px 6px;
+  text-align: center;
 }
 
 /** End modal styles **/

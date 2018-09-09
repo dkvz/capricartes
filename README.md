@@ -70,6 +70,7 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 
 ## TODO
 - [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.
+- [ ] Music select and preview are really not on the same level on Chrome.
 - [ ] Draw all my SVGs inline instead of using some of them from a static file.
 - [ ] Double check that we can't actually add HTML code to the pages using the URL.
 - [ ] Make it so that we can give a callback to moving-img-effects constructor so that I can remove the "loading" from my slide thingy.

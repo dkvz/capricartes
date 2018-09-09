@@ -25,6 +25,7 @@ class Capricartes {
       // Requires a loading screen.
       if (this.window.location.search) {
         this.cardFromUrl();
+        this.showSection('loading');
         this.loadGreetingCard(this.sections[2]);
         return;
       }
@@ -67,13 +68,17 @@ class Capricartes {
     this.effectsDiv = this.document.getElementById('effectsDiv');
     this.musicPreviewImg = this.document.getElementById('musicPreviewImg');
     this.loadingModal = this.document.getElementById('loadingModal');
-    this.loadingModal.querySelector('.close').addEventListener('click', _ => {
-      this.loadingModal.style.display = 'none';
-    });
+    this.loadingModal.querySelector('.close').addEventListener(
+      'click', this.cancelPreview.bind(this)
+    );
+    this.loadingModal.querySelector('button').addEventListener(
+      'click', this.cancelPreview.bind(this)
+    );
 
     this.state.slides = [];
     this.state.selectedMusic = 0;
     this.state.musicPlaying = false;
+    this.state.cancelledPreview = false;
 
     // Populate the combo boxes:
     cardStuff.backgrounds.forEach((bg, i) => {
@@ -115,10 +120,23 @@ class Capricartes {
     this.document
       .getElementById('previewButton')
       .addEventListener('click', _ => {
+        this.state.cancelledPreview = false;
         this.cardFromForm();
         this.showLoadingModal();
+
       });
 
+  }
+
+  cancelPreview() {
+    // We can't really cancel the Promise.all at the moment.
+    // I'm just cancelling the actual switching to the preview view...
+    this.hideLoadingDialog();
+    this.state.cancelledPreview = true;
+  }
+
+  hideLoadingDialog() {
+    this.loadingModal.style.display = 'none';
   }
 
   showLoadingModal() {
@@ -265,7 +283,7 @@ class Capricartes {
   }
 
   selectSlide() {
-    if (this.state.slides.length > 0)
+    if (this.state.slides.length > 0 && this.slidesSelect.selectedIndex !== 0)
       this.slideInput.value = this.state.slides[
         this.slidesSelect.selectedIndex - 1
       ];
@@ -360,7 +378,6 @@ class Capricartes {
   }
 
   loadGreetingCard(el) {
-    this.showSection('loading');
     // It's important to not be able to add
     // actual HTML to the page.
     let promises = [];
