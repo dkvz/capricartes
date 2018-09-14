@@ -68,6 +68,7 @@ class Capricartes {
     this.effectsDiv = this.document.getElementById('effectsDiv');
     this.musicPreviewImg = this.document.getElementById('musicPreviewImg');
     this.loadingModal = this.document.getElementById('loadingModal');
+    this.previewBar = this.document.getElementById('previewBar');
     this.loadingModal.querySelector('.close').addEventListener(
       'click', this.cancelPreview.bind(this)
     );
@@ -119,13 +120,37 @@ class Capricartes {
       .addEventListener('click', this.previewMusicClick.bind(this));
     this.document
       .getElementById('previewButton')
-      .addEventListener('click', _ => {
-        this.state.cancelledPreview = false;
-        this.cardFromForm();
-        this.showLoadingModal();
+      .addEventListener('click', this.showCardPreview.bind(this));
+    this.document
+      .getElementById('closePreview')
+      .addEventListener('click', this.closeCardPreview.bind(this));
+  }
 
-      });
+  showCardPreview() {
+    this.state.cancelledPreview = false;
+    this.cardFromForm();
+    this.showLoadingModal();
+    this.loadGreetingCard(this.sections[2], _ => {
+      this.hideLoadingDialog();
+      // Add the controls to go back to the form:
+      // TODO: We should intercept user using "back" here.
+      // (and have it close the preview).
+      this.showPreviewBar();
+    });
+  }
 
+  showPreviewBar() {
+    this.previewBar.style.display = 'flex';
+  }
+
+  hidePreviewBar() {
+    this.previewBar.style.display = 'none';
+  }
+
+  closeCardPreview() {
+    this.hidePreviewBar();
+    this.showSection('form');
+    this._resetCard(this.sections[2]);
   }
 
   cancelPreview() {
@@ -177,10 +202,14 @@ class Capricartes {
 
   _resetPreview(el, text) {
     // Reset the preview:
-    removeNodesFromElement(el);
-    el.style.background = '';
+    this._resetCard(el);
     el.className = 'preview';
     el.textContent = text;
+  }
+
+  _resetCard(el) {
+    removeNodesFromElement(el);
+    el.style.background = '';
   }
 
   _previewImage() {
@@ -377,7 +406,7 @@ class Capricartes {
     }
   }
 
-  loadGreetingCard(el) {
+  loadGreetingCard(el, callback) {
     // It's important to not be able to add
     // actual HTML to the page.
     let promises = [];
@@ -405,7 +434,10 @@ class Capricartes {
       promises.push(cardStuff.tunes[this.state.music]);
     
     Promise.all(promises).then(_ => {
-      this.showGreetingCard(el);
+      if (!this.state.cancelledPreview) {
+        this.showGreetingCard(el);
+        callback && callback();
+      }
     });
   }
 
