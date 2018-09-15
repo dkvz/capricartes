@@ -10,7 +10,11 @@ const imgs = {
   capriboite3Pv: require('../static/crapic_3_preview.png'),
   pulleurDessous: require('../static/pulleur_wp.jpg'),
   pulleurDessousPv: require('../static/pulleur_wp_preview.jpg'),
-  capritet: require('../static/capritet.png')
+  capritet: require('../static/capritet.png'),
+  patgpib: require('../static/patgpibgray.jpg'),
+  patgpibPv: require('../static/patgpibgray_preview.jpg'),
+  patpull: require('../static/patpull.jpg'),
+  patpullPv: require('../static/patpull_preview.jpg')
 };
 
 const cardStuffFactories = {
@@ -59,6 +63,27 @@ const cardStuffFactories = {
       el.style.backgroundImage = 
         'url("' + (preview ? previewSrc : src) + '")';
     } 
+    return ret;
+  },
+  BackgroundPattern: function(name, src, previewSrc) {
+    const ret = {};
+    ret.preload = (callback, preview) => 
+    new Promise((resolve) => {
+      cardStuffFactories.createImage(
+        preview ? previewSrc : src,
+        _ => {
+          callback && callback();
+          resolve();
+        });
+    });
+    ret.name = name;
+    ret.enable = (el, preview) => {
+      el.style.backgroundRepeat = 'repeat';
+      el.style.backgroundAttachment = 'fixed';
+      el.style.backgroundImage = 
+        'url("' + (preview ? previewSrc : src) + '")';
+      el.style.backgroundPosition = 'top left';
+    }
     return ret;
   },
   CenterImage: function(name, src, previewSrc) {
@@ -154,6 +179,20 @@ const cardStuff = {
     cardStuffFactories.BackgroundCSSClass(
       'Great choice of colors',
       'bg-cool-colors'
+    ),
+    cardStuffFactories.BackgroundCSSClass(
+      'Colorful',
+      'bg-animated-gradient'
+    ),
+    cardStuffFactories.BackgroundPattern(
+      'Is that a private joke?',
+      imgs.patgpib,
+      imgs.patgpibPv
+    ),
+    cardStuffFactories.BackgroundPattern(
+      'Multipull', 
+      imgs.patpull, 
+      imgs.patpullPv
     )
   ],
   foregrounds: [

@@ -24,9 +24,9 @@ Check the scripts section of package.json. Also run `npm install` at some point.
 
 ### Possible backgrounds
 - [x] Flashy colors from original crapic.dkvz.eu
-- [ ] Kitch repeat of one of the pics, to be decided
+- [x] Kitch repeat of one of the pics, to be decided - Could add more of these though
 - [x] Pullz background
-- [ ] Something like this: https://codepen.io/P1N2O/pen/pyBNzX
+- [x] Something like this: https://codepen.io/P1N2O/pen/pyBNzX
 - [ ] Some piece of art with a cat spliced in, la dernière scène? Chapelle Sixtine?
 - [ ] Hyrax, I think it's the pic from Wikipedia (or Wikimedia?)
 
