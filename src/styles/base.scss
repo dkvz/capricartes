@@ -512,7 +512,7 @@ svg[data-action] {
 }
 
 .close {
-  color: white;
+  color: #fff;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -550,12 +550,15 @@ svg[data-action] {
   box-sizing: border-box;
   z-index: 150;
   width: 100%;
-  top: 0;
+  bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
   box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.4);
 
   @include desktop {
+    top: 0;
+    left: 0;
+    bottom: initial;
     justify-content: space-between;
   }
 }
@@ -563,4 +566,18 @@ svg[data-action] {
 .small-title {
   text-shadow: 0 0 2px darken($bg-color, 20%);
   color: $title-color;
+}
+
+.bg-img-1 {
+
+  background-position: -1000px 0px;
+
+  @include tablet {
+    background-position: -700px 0px;
+  }
+
+  @include desktop {
+    background-position: center;
+  }
+
 }

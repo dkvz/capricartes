@@ -35,7 +35,7 @@ const cardStuffFactories = {
     };
     return ret;
   },
-  BackgroundImage: function(name, src, previewSrc) {
+  BackgroundImage: function(name, src, previewSrc, positionClass) {
     const ret = {};
     ret.preload = (callback, preview) => 
     new Promise((resolve) => {
@@ -50,8 +50,12 @@ const cardStuffFactories = {
     ret.enable = (el, preview) => {
       el.style.backgroundRepeat = 'no-repeat';
       if (!preview) el.style.backgroundAttachment = 'fixed';
-      el.style.backgroundPosition = 'center';
       el.style.backgroundSize = 'cover';
+      if (positionClass) {
+        el.classList.add(positionClass);
+      } else {
+        el.style.backgroundPosition = 'center';
+      }
       el.style.backgroundImage = 
         'url("' + (preview ? previewSrc : src) + '")';
     } 
@@ -144,7 +148,8 @@ const cardStuff = {
     cardStuffFactories.BackgroundImage(
       'Le pulleur over LACK',
       imgs.pulleurDessous,
-      imgs.pulleurDessousPv
+      imgs.pulleurDessousPv,
+      'bg-img-1'
     ),
     cardStuffFactories.BackgroundCSSClass(
       'Great choice of colors',
