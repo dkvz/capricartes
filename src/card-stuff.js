@@ -14,7 +14,9 @@ const imgs = {
   patgpib: require('../static/patgpibgray.jpg'),
   patgpibPv: require('../static/patgpibgray_preview.jpg'),
   patpull: require('../static/patpull.jpg'),
-  patpullPv: require('../static/patpull_preview.jpg')
+  patpullPv: require('../static/patpull_preview.jpg'),
+  tetedepull: require('../static/tetedepull.png'),
+  tetedepull_preview: require('../static/tetedepull_preview.png')
 };
 
 const cardStuffFactories = {
@@ -210,6 +212,11 @@ const cardStuff = {
       'Caprice boite 3',
       imgs.capriboite3,
       imgs.capriboite3Pv
+    ),
+    cardStuffFactories.CenterImage(
+      'La tête du matin',
+      imgs.tetedepull,
+      imgs.tetedepull_preview
     )
   ],
   effects: [
