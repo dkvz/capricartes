@@ -34,6 +34,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-size: 1em;
+  overflow: hidden;
 }
 
 body {
@@ -52,7 +53,7 @@ section {
   background: linear-gradient(to right, $bg-color, $golderz, $greenerz);
 }
 
-#loading {
+#loading, #card {
   overflow: hidden;
 }
 
