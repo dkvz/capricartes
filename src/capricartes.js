@@ -202,14 +202,14 @@ class Capricartes {
 
   _resetPreview(el, text) {
     // Reset the preview:
-    this._resetCard(el);
-    el.className = 'preview';
+    this._resetCard(el, 'preview');
     el.textContent = text;
   }
 
-  _resetCard(el) {
+  _resetCard(el, className) {
     removeNodesFromElement(el);
-    el.style.background = '';
+    el.style.cssText = '';
+    el.className = className ? className : '';
   }
 
   _previewImage() {

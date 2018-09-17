@@ -218,9 +218,17 @@ section {
   }
 }
 
-.line-em-up select, .line-em-up button {
+/**.line-em-up select, .line-em-up button {
   display: inline-block;
   height: 40px;
+}**/
+
+.line-em-up {
+  display: flex;
+}
+
+.line-em-up > * {
+  margin-right: 6px;
 }
 
 .divider {

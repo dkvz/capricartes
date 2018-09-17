@@ -54,7 +54,7 @@ const cardStuffFactories = {
     });
     ret.name = name;
     ret.enable = (el, preview) => {
-      el.style.backgroundRepeat = 'no-repeat';
+      el.style.backgroundRepeat = 'repeat-x';
       if (!preview) el.style.backgroundAttachment = 'fixed';
       el.style.backgroundSize = 'cover';
       if (positionClass) {
@@ -81,7 +81,7 @@ const cardStuffFactories = {
     ret.name = name;
     ret.enable = (el, preview) => {
       el.style.backgroundRepeat = 'repeat';
-      el.style.backgroundAttachment = 'fixed';
+      //el.style.backgroundAttachment = 'fixed';
       el.style.backgroundImage = 
         'url("' + (preview ? previewSrc : src) + '")';
       el.style.backgroundPosition = 'top left';
