@@ -28,7 +28,7 @@ Check the scripts section of package.json. Also run `npm install` at some point.
 - [x] Pullz background
 - [x] Something like this: https://codepen.io/P1N2O/pen/pyBNzX
 - [ ] Some piece of art with a cat spliced in, la dernière scène? Chapelle Sixtine?
-- [ ] Hyrax, I think it's the pic from Wikipedia (or Wikimedia?)
+- [x] Hyrax, I think it's the pic from Wikipedia (or Wikimedia?)
 
 ### Images
 * All the crapic.dkvz.eu images, with their vibration animation.
@@ -83,7 +83,6 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] Use border-radius on the input tags. And probably also on the buttons.
 - [x] Try using transparent input fields.
 - [ ] Add font antialiasing.
-- [ ] Add a huge neon-glow on hover over inputs and buttons.
 - [x] Use template tags for reusable stuff that I need to insert.
-- [ ] Use a transition for the hover on buttons.
+- [x] Use a transition for the hover on buttons.
 - [x] onChange doesn't trigger when clicking the same element in a select element. I need another plan for that. The first option element should be the amount of slides. That way it should work.

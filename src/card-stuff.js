@@ -16,7 +16,9 @@ const imgs = {
   patpull: require('../static/patpull.jpg'),
   patpullPv: require('../static/patpull_preview.jpg'),
   tetedepull: require('../static/tetedepull.png'),
-  tetedepull_preview: require('../static/tetedepull_preview.png')
+  tetedepull_preview: require('../static/tetedepull_preview.png'),
+  hyrax: require('../static/hyrax.jpg'),
+  hyraxPv: require('../static/hyrax_preview.jpg')
 };
 
 const cardStuffFactories = {
@@ -196,6 +198,11 @@ const cardStuff = {
       'Multipull', 
       imgs.patpull, 
       imgs.patpullPv
+    ),
+    cardStuffFactories.BackgroundImage(
+      'Hyrax',
+      imgs.hyrax,
+      imgs.hyraxPv
     )
   ],
   foregrounds: [
