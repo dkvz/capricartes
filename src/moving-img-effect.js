@@ -30,7 +30,15 @@ class MovingImgEffect {
   imageLoaded() {
     // At this point we have the dimensions of the image.
     this.loaded = true;
+    this.initialWidth = this.img.width;
+    this.initialHeight = this.img.height;
     (this.loadedCallback && this.loadedCallback());
+    // Set the image size according to initial viewport size:
+    if (this.parent.offsetWidth < (this.initialWidth * 2)) {
+      console.log('Setting size to half');
+      this.img.width = this.initialWidth / 2;
+      this.img.height = this.initialHeight /2;
+    }
     (this.start && this.initialize());
   }
 
