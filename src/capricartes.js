@@ -51,9 +51,9 @@ class Capricartes {
 
   initFormControls() {
     // TODO I initially thought this method would be called only once
-    // but since I'm considering implementing pushstat that might no 
+    // but since I'm considering implementing pushstate that might no 
     // longer be the case.
-    // We should check whether we really need register the form elements.
+    // We should check whether we really need to register the form elements.
 
     // Register the event listener for the form.
     this.titleInput = this.document.getElementById('titleInput');

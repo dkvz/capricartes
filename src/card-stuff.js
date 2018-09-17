@@ -147,7 +147,8 @@ const cardStuffFactories = {
       }, preview);
     };
     ret.enable = _ => {
-      return this.audio ? this.audio : pload();
+      if (this.audio && this.audio.src === src) return this.audio;
+      else return pload();
     };
     return ret;
   },

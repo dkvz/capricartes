@@ -69,7 +69,7 @@ Instead of inlining SVGs I used the external file but had to hardcode a fill col
 At some point I started using inline SVG anyway. So I should replace the shitty SVGs I'm using with drawings of my own.
 
 ## Issues
-- [ ] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
+- [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
 ## TODO
 - [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.
