@@ -33,17 +33,16 @@ class MovingImgEffect {
     this.initialWidth = this.img.width;
     this.initialHeight = this.img.height;
     (this.loadedCallback && this.loadedCallback());
-    // Set the image size according to initial viewport size:
-    if (this.parent.offsetWidth < (this.initialWidth * 2)) {
-      console.log('Setting size to half');
-      this.img.width = this.initialWidth / 2;
-      this.img.height = this.initialHeight /2;
-    }
     (this.start && this.initialize());
   }
 
   initialize() {
     if (this.loaded === true) {
+      // Set the image size according to initial viewport size:
+      if (this.parent.offsetWidth < (this.initialWidth * 2)) {
+        this.img.width = this.initialWidth / 2;
+        this.img.height = this.initialHeight /2;
+      }
       this._reposition();
       this.parent.appendChild(this.img);
       this.window.requestAnimationFrame(this._animate.bind(this));

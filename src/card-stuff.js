@@ -267,7 +267,11 @@ const cardStuff = {
         );
         else this.imgEffect.initialize();
       }
-    }
+    },
+    cardStuffFactories.TemplateContent(
+      'Glowing sun',
+      'svgSun'
+    )
   ],
   tunes: [
     cardStuffFactories.Music(
