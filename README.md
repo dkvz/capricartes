@@ -44,6 +44,7 @@ I decided against effect preview for the moment, also we can select more than on
 * DONE - Request animation frame crapic head bouncing around
 * Add a glowing sun? Just a round div with a gradient that transitions in size (the div does)
   * Don't forget to use 3D transform to use the GPU
+    * I don' t use 3D transform but I got this: https://codepen.io/dkvz/pen/mGvWxY
 * Add a rainbow (huge svg to draw)
 * Random weird gifs appearing
 * Cat head coming in from the bottom then hiding again

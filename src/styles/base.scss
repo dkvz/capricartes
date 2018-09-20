@@ -417,6 +417,12 @@ section {
 	}
 }
 
+@keyframes scaler {
+  0% {transform: scale(1)}
+  50% {transform: scale(1.14)}
+  100% {transform: scale(1)}
+}
+
 .bg-cool-colors {
   animation-name: coolColors;
   animation-duration: 2s;
@@ -615,3 +621,39 @@ svg[data-action] {
 
 }
 
+.theSun {
+  display: block;
+  position: absolute;
+  z-index: 40;
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  top: -200px;
+
+  @include tablet {
+    width: 300px;
+    height: 300px;
+    left: 0px;
+    top: 0px;
+  }
+
+  @include desktop {
+    width: 400px;
+    height: 400px;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.theSun > .glow {
+  fill: url(#svgGrad);
+}
+
+.theSun > .main-circle {
+  fill: url(#mainGrad);
+}
+
+.scaler {
+  transform-origin: center;
+  animation: scaler 2s ease 0s infinite normal;
+}

@@ -154,6 +154,16 @@ const cardStuffFactories = {
     };
     return ret;
   },
+  TemplateContent: function(name, templateId) {
+    const ret = {};
+    ret.name = name;
+    ret.enable = (el, window, document) => {
+      el.appendChild(
+        document.getElementById(templateId).content.cloneNode(true)
+      );
+    };
+    return ret;
+  },
 
   getImagePromise: function(src, callback) {
     return new Promise((resolve, reject) => {

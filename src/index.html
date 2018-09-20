@@ -136,5 +136,21 @@
       </div>
     </div>
   </template>
+  <template id="svgSun">
+    <svg class="theSun">
+      <defs>
+        <radialGradient id="svgGrad" cx="50%" cy="50%" r="48%" fx="50%" fy="50%">
+          <stop offset="0%" style="stop-color: yellow; stop-opacity: 0.8" />
+          <stop offset="100%" style="stop-color: orange; stop-opacity: 0.4" />
+        </radialGradient>
+        <radialGradient id="mainGrad" cx="50%" cy="50%" r="38%" fx="50%" fy="50%">
+          <stop offset="0%" style="stop-color: yellow; stop-opacity: 1" />
+          <stop offset="100%" style="stop-color: #f4dc42; stop-opacity: 0" />
+        </radialGradient>
+      </defs>
+      <circle cx="50%" cy="50%" r="45%" class="main-circle" />
+      <circle cx="50%" cy="50%" r="40%" class="glow scaler" />
+    </svg>
+  </template>
 </body>
 </html>
