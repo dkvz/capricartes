@@ -18,7 +18,9 @@ const imgs = {
   tetedepull: require('../static/tetedepull.png'),
   tetedepull_preview: require('../static/tetedepull_preview.png'),
   hyrax: require('../static/hyrax.jpg'),
-  hyraxPv: require('../static/hyrax_preview.jpg')
+  hyraxPv: require('../static/hyrax_preview.jpg'),
+  lapinet: require('../static/lapinet.png'),
+  lapinetPv: require('../static/lapinet_preview.png')
 };
 
 const cardStuffFactories = {
@@ -235,6 +237,11 @@ const cardStuff = {
       'La tête du matin',
       imgs.tetedepull,
       imgs.tetedepull_preview
+    ),
+    cardStuffFactories.CenterImage(
+      'Not a cat',
+      imgs.lapinet,
+      imgs.lapinetPv
     )
   ],
   effects: [
