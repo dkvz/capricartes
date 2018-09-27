@@ -74,6 +74,7 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
 ## TODO
+- [ ] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
 - [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.
 - [ ] Music select and preview are really not on the same level on Chrome.
 - [ ] Draw all my SVGs inline instead of using some of them from a static file.

@@ -20,7 +20,13 @@ const imgs = {
   hyrax: require('../static/hyrax.jpg'),
   hyraxPv: require('../static/hyrax_preview.jpg'),
   lapinet: require('../static/lapinet.png'),
-  lapinetPv: require('../static/lapinet_preview.png')
+  lapinetPv: require('../static/lapinet_preview.png'),
+  fractal1: require('../static/fractal1.jpg'),
+  fractal1Pv: require('../static/fractal1_preview.jpg'),
+  pulleurGrosPlan: require('../static/pulleur_gp.jpg'),
+  pulleurGrosPlanPv: require('../static/pulleur_gp_preview.jpg'),
+  lapinetSourdine: require('../static/lapin_sourdine.png'),
+  lapinetSourdinePv: require('../static/lapin_sourdine_preview.png')
 };
 
 const cardStuffFactories = {
@@ -212,9 +218,19 @@ const cardStuff = {
       imgs.patpullPv
     ),
     cardStuffFactories.BackgroundImage(
+      'Close-up on Pullzorz',
+      imgs.pulleurGrosPlan,
+      imgs.pulleurGrosPlanPv
+    ),
+    cardStuffFactories.BackgroundImage(
       'Hyrax',
       imgs.hyrax,
       imgs.hyraxPv
+    ),
+    cardStuffFactories.BackgroundImage(
+      'Dimensions',
+      imgs.fractal1,
+      imgs.fractal1Pv
     )
   ],
   foregrounds: [
@@ -242,6 +258,11 @@ const cardStuff = {
       'Not a cat',
       imgs.lapinet,
       imgs.lapinetPv
+    ),
+    cardStuffFactories.CenterImage(
+      'Not a cat 2',
+      imgs.lapinetSourdine,
+      imgs.lapinetSourdinePv
     )
   ],
   effects: [
