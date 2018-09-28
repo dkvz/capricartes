@@ -417,12 +417,6 @@ section {
 	}
 }
 
-@keyframes scaler {
-  0% {transform: scale(1)}
-  50% {transform: scale(1.14)}
-  100% {transform: scale(1)}
-}
-
 .bg-cool-colors {
   animation-name: coolColors;
   animation-duration: 2s;
@@ -445,7 +439,7 @@ https://codepen.io/P1N2O/pen/pyBNzX
   margin: 0;
   padding: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 25;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -621,7 +615,7 @@ svg[data-action] {
 
 }
 
-.theSun {
+.the-sun {
   display: block;
   position: absolute;
   z-index: 40;
@@ -645,15 +639,68 @@ svg[data-action] {
   }
 }
 
-.theSun > .glow {
+.the-sun > .glow {
   fill: url(#svgGrad);
 }
 
-.theSun > .main-circle {
+.the-sun > .main-circle {
   fill: url(#mainGrad);
+}
+
+@keyframes scaler {
+  0% {transform: scale(1)}
+  50% {transform: scale(1.14)}
+  100% {transform: scale(1)}
 }
 
 .scaler {
   transform-origin: center;
   animation: scaler 2s ease 0s infinite normal;
+}
+
+.the-rainbow {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  transform: rotate(180deg);
+
+  @include desktop {
+    bottom: 0;
+    top: initial;
+    max-width: 900px;
+    left: 50%;
+    transform: rotate(0deg) translateX(-50%);
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    opacity: 0;
+    transform: rotate(inherit) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(inherit) scale(1.05);
+  }
+  100% {
+    opacity: 0; 
+    transform: rotate(inherit) scale(1);
+  }
+}
+
+.rainbow-ray {
+  animation-name: rainbow;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+/* 
+* I initially made this class because I thought 
+* I needed different origins for screen sizes, 
+* but turns out I don't.
+*/
+.origin-bottom-center {
+  transform-origin: bottom center;
 }

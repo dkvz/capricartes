@@ -299,7 +299,30 @@ const cardStuff = {
     cardStuffFactories.TemplateContent(
       'Glowing sun',
       'svgSun'
-    )
+    ),
+    {
+      name: 'Crazy rainbow',
+      enable: function(el, window, document) {
+        const rb = 
+          document.getElementById('svgRainbow').content.cloneNode(true);
+        rb.querySelectorAll('circle[data-ray]').forEach((c, i) => {
+          c.style.animationDelay = (i * 0.75) + 's';
+          c.classList.add('rainbow-ray', 'origin-bottom-center');
+        });
+        el.appendChild(rb);
+      }
+    },
+    {
+      name: 'Rainbow',
+      enable: function(el, window, document) {
+        const rb = 
+          document.getElementById('svgRainbow').content.cloneNode(true);
+        const svg = rb.querySelector('svg');
+        svg.classList.add('rainbow-ray');
+        svg.style.animationDuration = '2.5s';
+        el.appendChild(rb);
+      }
+    }
   ],
   tunes: [
     cardStuffFactories.Music(

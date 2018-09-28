@@ -25,6 +25,7 @@ class MovingImgEffect {
     this.img.src = src;
     this.img.id = imageId;
     this.img.style.position = 'absolute';
+    this.img.style.zIndex = 15;
   }
 
   imageLoaded() {
