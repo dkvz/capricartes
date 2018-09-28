@@ -80,6 +80,7 @@ class Capricartes {
     this.state.selectedMusic = 0;
     this.state.musicPlaying = false;
     this.state.cancelledPreview = false;
+    this.state.originalHref = this.window.location.href;
 
     // Populate the combo boxes:
     cardStuff.backgrounds.forEach((bg, i) => {
@@ -105,8 +106,10 @@ class Capricartes {
       );
     });
 
-    this.backgroundSelect.addEventListener('change', this._previewBackground.bind(this));
-    this.imageSelect.addEventListener('change', this._previewImage.bind(this));
+    this.backgroundSelect
+      .addEventListener('change', this._previewBackground.bind(this));
+    this.imageSelect
+      .addEventListener('change', this._previewImage.bind(this));
 
     this.document
       .getElementById('addSlideButton')
@@ -114,7 +117,8 @@ class Capricartes {
     this.document
       .getElementById('delSlideButton')
       .addEventListener('click', this.delSlideClick.bind(this));
-    this.slidesSelect.addEventListener('change', this.selectSlide.bind(this));
+    this.slidesSelect
+      .addEventListener('change', this.selectSlide.bind(this));
     this.document
       .getElementById('musicPreviewButton')
       .addEventListener('click', this.previewMusicClick.bind(this));
@@ -124,6 +128,16 @@ class Capricartes {
     this.document
       .getElementById('closePreview')
       .addEventListener('click', this.closeCardPreview.bind(this));
+
+    this.window
+      .addEventListener('popstate', this.previewPopstateCallback.bind(this));
+  }
+
+  previewPopstateCallback(s) {
+    if (s.state.preview === false) {
+      // Disable the preview:
+      this.closeCardPreview();
+    }
   }
 
   showCardPreview() {
@@ -132,9 +146,13 @@ class Capricartes {
     this.showLoadingModal();
     this.loadGreetingCard(this.sections[2], _ => {
       this.hideLoadingDialog();
+      // Change the URL so that the "back" button works:
+      this.window.history.pushState(
+        {preview: true}, 
+        'Capricartes - Preview',
+        this.window.location.href + '?preview'
+      );
       // Add the controls to go back to the form:
-      // TODO: We should intercept user using "back" here.
-      // (and have it close the preview).
       this.showPreviewBar();
     });
   }
@@ -148,6 +166,11 @@ class Capricartes {
   }
 
   closeCardPreview() {
+    this.window.history.pushState(
+      {preview: false},
+      'Capricartes',
+      this.state.originalHref
+    );
     this.hidePreviewBar();
     this.showSection('form');
     this._resetCard(this.sections[2]);
