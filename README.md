@@ -74,14 +74,14 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
 ## TODO
-- [ ] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
+- [x] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
+- [ ] Instead of using data-ray as an attribute to select the rays of my rainbow I could group them inside a <g> element and use a query selector to get them from there. It should work.
 - [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.
-- [ ] Music select and preview are really not on the same level on Chrome.
-- [ ] Draw all my SVGs inline instead of using some of them from a static file.
+- [x] Music select and preview are really not on the same level on Chrome.
+- [ ] Put the 'close' SVG in an external file, and add a viewbox to it for easy resize.
 - [ ] Double check that we can't actually add HTML code to the pages using the URL.
-- [ ] Make it so that we can give a callback to moving-img-effects constructor so that I can remove the "loading" from my slide thingy.
 - [ ] Test using special characters (emojis) in slides or the title, in all browsers.
-- [ ] Add the rotating crapice to the title. Maybe only rotate on hover? And/Or add it to the loading page.
+- [ ] Add the rotating crapice to the title. Maybe only rotate on hover? And/Or add it to the loading page. Could be an effect too.
 - [ ] Add links to my stuff at the bottom.
 - [x] Use border-radius on the input tags. And probably also on the buttons.
 - [x] Try using transparent input fields.

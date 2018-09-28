@@ -68,12 +68,19 @@ class Capricartes {
     this.effectsDiv = this.document.getElementById('effectsDiv');
     this.musicPreviewImg = this.document.getElementById('musicPreviewImg');
     this.loadingModal = this.document.getElementById('loadingModal');
+    this.showLinkModal = this.document.getElementById('showLinkModal');
     this.previewBar = this.document.getElementById('previewBar');
     this.loadingModal.querySelector('.close').addEventListener(
       'click', this.cancelPreview.bind(this)
     );
     this.loadingModal.querySelector('button').addEventListener(
       'click', this.cancelPreview.bind(this)
+    );
+    this.showLinkModal.querySelector('.close').addEventListener(
+      'click', this.hideLinkDialog.bind(this)
+    );
+    this.showLinkModal.querySelector('button').addEventListener(
+      'click', this.hideLinkDialog.bind(this)
     );
 
     this.state.slides = [];
@@ -185,6 +192,10 @@ class Capricartes {
 
   hideLoadingDialog() {
     this.loadingModal.style.display = 'none';
+  }
+
+  hideLinkDialog() {
+    this.showLinkModal.style.display = 'none';
   }
 
   showLoadingModal() {
