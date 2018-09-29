@@ -147,6 +147,49 @@ class Capricartes {
     }
   }
 
+  showLinkDialog() {
+    // We need to generate the link.
+    this.state.cardUrl = this.getUrlFromForm();
+    
+  }
+
+  getUrlFromForm() {
+    this.cardFromForm();
+    // Generate the URL from the state:
+    const params = [];
+    // This checks that title is not empty as well:
+    if (this.state.title)
+      params.push(
+        't=' + this.window.encodeURI(
+          this.window.btoa(this.state.title)
+        )
+      );
+    if (this.state.slides && this.state.slides.length > 0) {
+      params.push(
+        's=' + this.state.slides.map(
+          i => this.window.encodeURI(this.window.btoa(i))
+        ).join(',')
+      );
+    }
+    if (this.state.background !== undefined) {
+      params.push('b=' + this.state.background);
+    }
+    if (this.state.foreground !== undefined) {
+      params.push('f=' + this.state.foreground);
+    }
+    if (this.state.effects && this.state.effects.length > 0) {
+      params.push(
+        'e=' + this.state.effects.join(',')
+      );
+    }
+    if (this.state.music !== undefined) {
+      params.push('m=' + this.state.music);
+    }
+    return this.state.originalHref +
+      '/crapic?' +
+      params.join('&');
+  }
+
   showCardPreview() {
     this.state.cancelledPreview = false;
     this.cardFromForm();
@@ -157,7 +200,7 @@ class Capricartes {
       this.window.history.pushState(
         {preview: true}, 
         'Capricartes - Preview',
-        this.window.location.href + '?preview'
+        this.state.originalHref + '?preview'
       );
       // Add the controls to go back to the form:
       this.showPreviewBar();
@@ -384,10 +427,10 @@ class Capricartes {
       if (p && p.length === 2) {
         switch (p[0]) {
           case 't':
-            this.state.title = atob(p[1]);
+            this.state.title = this.window.atob(p[1]);
             break;
           case 's':
-            this.state.slides.push(atob(p[1]));
+            this.state.slides.push(this.window.atob(p[1]));
             break;
           case 'b':
             let bid = Number(p[1]);
