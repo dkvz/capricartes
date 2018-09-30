@@ -11,6 +11,8 @@ This was my usual intro giving excuses as to why the code is really weird.
 
 I use Webpack to bundle my JS files together.
 
+A backend would be useful to generate smaller URLs. Or I might use a public API to do that in the future.
+
 ## Setup
 Check the scripts section of package.json. Also run `npm install` at some point.
 
@@ -74,6 +76,7 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
 ## TODO
+- [x] Add a capric favicon and all the social tags + meta description.
 - [ ] Allow selecting different text styles for the title.
 - [ ] Line feeds do not work in slides, I'd need to use <pre> or transform the line feeds into br elements somehow, which will require adding the HTML content, which is dangerous. That's a lot of whiches.
 - [ ] What happens if you add the query parameter "s" twice with twice the slides and the URL parsing?
