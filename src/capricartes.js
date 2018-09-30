@@ -70,6 +70,7 @@ class Capricartes {
     this.loadingModal = this.document.getElementById('loadingModal');
     this.showLinkModal = this.document.getElementById('showLinkModal');
     this.previewBar = this.document.getElementById('previewBar');
+    this.cardLink = this.document.getElementById('cardLink');
     this.loadingModal.querySelector('.close').addEventListener(
       'click', this.cancelPreview.bind(this)
     );
@@ -135,6 +136,9 @@ class Capricartes {
     this.document
       .getElementById('closePreview')
       .addEventListener('click', this.closeCardPreview.bind(this));
+    this.document
+      .getElementById('generateButton')
+      .addEventListener('click', this.showLinkDialog.bind(this));
 
     this.window
       .addEventListener('popstate', this.previewPopstateCallback.bind(this));
@@ -150,7 +154,9 @@ class Capricartes {
   showLinkDialog() {
     // We need to generate the link.
     this.state.cardUrl = this.getUrlFromForm();
-    
+    this.cardLink.textContent = this.state.cardUrl;
+    this.cardLink.href = this.state.cardUrl;
+    this.showLinkModal.style.display = 'block'; 
   }
 
   getUrlFromForm() {
@@ -160,14 +166,14 @@ class Capricartes {
     // This checks that title is not empty as well:
     if (this.state.title)
       params.push(
-        't=' + this.window.encodeURI(
+        't=' + this.window.encodeURIComponent(
           this.window.btoa(this.state.title)
         )
       );
     if (this.state.slides && this.state.slides.length > 0) {
       params.push(
         's=' + this.state.slides.map(
-          i => this.window.encodeURI(this.window.btoa(i))
+          i => this.window.encodeURIComponent(this.window.btoa(i))
         ).join(',')
       );
     }
@@ -186,7 +192,7 @@ class Capricartes {
       params.push('m=' + this.state.music);
     }
     return this.state.originalHref +
-      '/crapic?' +
+      'crapic?' +
       params.join('&');
   }
 
@@ -427,10 +433,10 @@ class Capricartes {
       if (p && p.length === 2) {
         switch (p[0]) {
           case 't':
-            this.state.title = this.window.atob(p[1]);
+            this.state.title = this.window.atob(this.window.decodeURIComponent(p[1]));
             break;
           case 's':
-            this.state.slides.push(this.window.atob(p[1]));
+            this.state.slides.push(this.window.atob(this.window.decodeURIComponent(p[1])));
             break;
           case 'b':
             let bid = Number(p[1]);

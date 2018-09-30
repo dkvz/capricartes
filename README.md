@@ -77,6 +77,7 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
 - [ ] Instead of using data-ray as an attribute to select the rays of my rainbow I could group them inside a <g> element and use a query selector to get them from there. It should work.
 - [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.
+- [ ] I could do error catching with calls to atob in cardFromUrl, as these can throw errors for invalid character, which right now results in a never-ending loading screen.
 - [x] Music select and preview are really not on the same level on Chrome.
 - [ ] Put the 'close' SVG in an external file, and add a viewbox to it for easy resize.
 - [ ] Double check that we can't actually add HTML code to the pages using the URL.
