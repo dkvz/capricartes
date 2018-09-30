@@ -48,7 +48,11 @@ section {
   width: 100%;
 }
 
-#loading, #form {
+/*#loading, #form {
+  background: #C6FFDD;
+  background: linear-gradient(to right, $bg-color, $golderz, $greenerz);
+}*/
+.main-bg {
   background: #C6FFDD;
   background: linear-gradient(to right, $bg-color, $golderz, $greenerz);
 }
@@ -587,8 +591,8 @@ svg[data-action] {
   width: 100%;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.2);
 
   @include desktop {
     top: 0;

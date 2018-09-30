@@ -9,7 +9,7 @@ But then it got kind of crazy. Which is alright given what this project actually
 
 This was my usual intro giving excuses as to why the code is really weird.
 
-I use Webpack to bundle my JS files together.
+I use Webpack to bundle my JS files together and SCSS to process styles (mostly because I want to learn SASS).
 
 A backend would be useful to generate smaller URLs. Or I might use a public API to do that in the future.
 
@@ -79,10 +79,9 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] Add a capric favicon and all the social tags + meta description.
 - [ ] Allow selecting different text styles for the title.
 - [ ] Line feeds do not work in slides, I'd need to use <pre> or transform the line feeds into br elements somehow, which will require adding the HTML content, which is dangerous. That's a lot of whiches.
-- [ ] What happens if you add the query parameter "s" twice with twice the slides and the URL parsing?
+- [x] What happens if you add the query parameter "s" twice with twice the slides and the URL parsing?
 - [x] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
 - [ ] Instead of using data-ray as an attribute to select the rays of my rainbow I could group them inside a <g> element and use a query selector to get them from there. It should work.
-- [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.
 - [ ] I could do error catching with calls to atob in cardFromUrl, as these can throw errors for invalid character, which right now results in a never-ending loading screen.
 - [x] Music select and preview are really not on the same level on Chrome.
 - [ ] Put the 'close' SVG in an external file, and add a viewbox to it for easy resize.

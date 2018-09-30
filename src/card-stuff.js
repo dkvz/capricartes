@@ -26,7 +26,9 @@ const imgs = {
   pulleurGrosPlan: require('../static/pulleur_gp.jpg'),
   pulleurGrosPlanPv: require('../static/pulleur_gp_preview.jpg'),
   lapinetSourdine: require('../static/lapin_sourdine.png'),
-  lapinetSourdinePv: require('../static/lapin_sourdine_preview.png')
+  lapinetSourdinePv: require('../static/lapin_sourdine_preview.png'),
+  capribrut: require('../static/crapicbrut.png'),
+  capribrutPv: require('../static/crapicbrut_preview.png')
 };
 
 const cardStuffFactories = {
@@ -193,6 +195,10 @@ const cardStuffFactories = {
 const cardStuff = {
 
   backgrounds: [
+    cardStuffFactories.BackgroundCSSClass(
+      'Standard',
+      'main-bg'
+    ),
     cardStuffFactories.BackgroundImage(
       'Le pulleur over LACK',
       imgs.pulleurDessous,
@@ -263,6 +269,11 @@ const cardStuff = {
       'Not a cat 2',
       imgs.lapinetSourdine,
       imgs.lapinetSourdinePv
+    ),
+    cardStuffFactories.CenterImage(
+      'Artistic impression',
+      imgs.capribrut,
+      imgs.capribrutPv
     )
   ],
   effects: [
