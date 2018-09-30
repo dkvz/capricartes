@@ -80,8 +80,11 @@ class Capricartes {
     this.showLinkModal.querySelector('.close').addEventListener(
       'click', this.hideLinkDialog.bind(this)
     );
-    this.showLinkModal.querySelector('button').addEventListener(
+    this.showLinkModal.querySelector('button:first-child').addEventListener(
       'click', this.hideLinkDialog.bind(this)
+    );
+    this.showLinkModal.querySelector('button:last-child').addEventListener(
+      'click', this.copyUrlToClipboard.bind(this)
     );
 
     this.state.slides = [];
@@ -211,6 +214,19 @@ class Capricartes {
       // Add the controls to go back to the form:
       this.showPreviewBar();
     });
+  }
+
+  copyUrlToClipboard() {
+    const input = this.document.createElement('input');
+    input.value = this.state.cardUrl;
+    input.style.position = 'absolute';
+    input.style.left = 0;
+    input.style.top = 0;
+    input.style.zIndex = -999;
+    this.document.body.appendChild(input);
+    input.select();
+    this.document.execCommand('copy');
+    this.document.body.removeChild(input);
   }
 
   showPreviewBar() {
@@ -436,7 +452,12 @@ class Capricartes {
             this.state.title = this.window.atob(this.window.decodeURIComponent(p[1]));
             break;
           case 's':
-            this.state.slides.push(this.window.atob(this.window.decodeURIComponent(p[1])));
+            // My original plan was to have each slide on its own s= query parameter.
+            // It changed along the way into a comma separated list.
+            //this.state.slides.push(this.window.atob(this.window.decodeURIComponent(p[1])));
+            this.state.slides = p[1].split(',').map(
+              s => this.window.atob(this.window.decodeURIComponent(s))
+            );
             break;
           case 'b':
             let bid = Number(p[1]);

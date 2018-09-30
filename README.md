@@ -74,6 +74,9 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
 ## TODO
+- [ ] Allow selecting different text styles for the title.
+- [ ] Line feeds do not work in slides, I'd need to use <pre> or transform the line feeds into br elements somehow, which will require adding the HTML content, which is dangerous. That's a lot of whiches.
+- [ ] What happens if you add the query parameter "s" twice with twice the slides and the URL parsing?
 - [x] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
 - [ ] Instead of using data-ray as an attribute to select the rays of my rainbow I could group them inside a <g> element and use a query selector to get them from there. It should work.
 - [ ] I explicitly mention some fields are optional, but actually everything is optional except maybe for the background. I should clarify that one way or another.

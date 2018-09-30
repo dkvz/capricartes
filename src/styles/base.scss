@@ -461,7 +461,7 @@ https://codepen.io/P1N2O/pen/pyBNzX
   display: flex;
   flex-direction: column;
   transition: opacity 1s;
-  z-index: 20;
+  z-index: 80;
 
   @include tablet {
     width: 78%;
@@ -495,6 +495,8 @@ https://codepen.io/P1N2O/pen/pyBNzX
   div {
     position: absolute;
     background-color: inherit;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
@@ -507,7 +509,7 @@ svg[data-action] {
 .modal {
   display: none;
   position: fixed;
-  z-index: 10;
+  z-index: 80;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -703,4 +705,11 @@ svg[data-action] {
 */
 .origin-bottom-center {
   transform-origin: bottom center;
+}
+
+.card-link {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-height: 200px;
+  overflow-y: auto;
 }
