@@ -29,8 +29,7 @@ const imgs = {
   lapinetSourdinePv: require('../static/lapin_sourdine_preview.png'),
   capribrut: require('../static/crapicbrut.png'),
   capribrutPv: require('../static/crapicbrut_preview.png'),
-  capritetdroite: require('../static/geubitetedroite.png'),
-  capritetdroitePv: require('../static/geubitetedroite_mini.png')
+  capritetdroite: require('../static/geubitetedroite.png')
 };
 
 const cardStuffFactories = {
@@ -186,6 +185,9 @@ const cardStuffFactories = {
     });
   },
   createImage: function(src, onload) {
+    // TODO In theory I should use window as an argument here and
+    // use window.Image to be consistent with everything else.
+    // Oh well...
     const img = new Image();
     img.onload = onload;
     img.src = src;
@@ -334,6 +336,36 @@ const cardStuff = {
         svg.classList.add('rainbow-ray');
         svg.style.animationDuration = '2.5s';
         el.appendChild(rb);
+      }
+    },
+    {
+      name: 'Coucou Caprice',
+      preload: function (callback) {
+        return new Promise((resolve) => {
+          this.img = cardStuffFactories.createImage(
+            imgs.capritetdroite, 
+            _ => {
+              resolve();
+              callback && callback();
+            }
+          );
+        });
+      },
+      enable(el, window, document) {
+        const setImage = (img) => {
+          if (el.offsetWidth < 1000) {
+            img.height = img.height / 1.6;
+            img.width = img.width / 1.6;
+          }
+          img.className = 'pop-head';
+          el.appendChild(img);
+        };
+        if (!this.img) this.img = cardStuffFactories.createImage(
+          imgs.capritetdroite, 
+          _ => {
+            setImage(this.img);
+          });
+        else setImage(this.img);
       }
     }
   ],

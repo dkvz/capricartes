@@ -717,3 +717,19 @@ svg[data-action] {
   max-height: 200px;
   overflow-y: auto;
 }
+
+@keyframes popHead {
+  0% {transform: translate(100%, 100%)}
+  50% {transform: translate(0%, 0%)}
+  70% {transform: translate(0%, 0%)}
+  100% {transform: translate(100%, 100%)}
+}
+
+.pop-head {
+  position: absolute;
+  z-index: 40;
+  right: 0;
+  bottom: 0;
+  transform: translate(100%, 100%);
+  animation: popHead 6s ease-in 0s infinite;
+}
