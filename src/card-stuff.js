@@ -28,7 +28,9 @@ const imgs = {
   lapinetSourdine: require('../static/lapin_sourdine.png'),
   lapinetSourdinePv: require('../static/lapin_sourdine_preview.png'),
   capribrut: require('../static/crapicbrut.png'),
-  capribrutPv: require('../static/crapicbrut_preview.png')
+  capribrutPv: require('../static/crapicbrut_preview.png'),
+  capritetdroite: require('../static/geubitetedroite.png'),
+  capritetdroitePv: require('../static/geubitetedroite_mini.png')
 };
 
 const cardStuffFactories = {
