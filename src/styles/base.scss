@@ -248,8 +248,19 @@ section {
 }
 
 .center-buttons {
-  text-align: center;
   padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  flex-wrap: wrap;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.center-buttons button {
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .chkbox-text {
