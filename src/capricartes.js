@@ -9,6 +9,8 @@ class Capricartes {
     this.window = window;
     this.document = document;
     this.sections = document.querySelectorAll('section');
+    // Yeah you can have a state without using React (????)
+    // I'm not sure why I did this.
     this.state = {};
   }
 
@@ -54,6 +56,9 @@ class Capricartes {
     // but since I'm considering implementing pushstate that might no 
     // longer be the case.
     // We should check whether we really need to register the form elements.
+
+    // For the moment we only use pushstate to make the back button work on
+    // the card preview screen.
 
     // Register the event listener for the form.
     this.titleInput = this.document.getElementById('titleInput');
