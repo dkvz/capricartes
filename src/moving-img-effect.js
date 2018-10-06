@@ -18,6 +18,7 @@ class MovingImgEffect {
     this.loadedCallback = loadedCallback;
 
     this.loaded = false;
+    this.disabled = false;
     this.parent = parent;
     this.start = start;
     this.img = new Image();
@@ -37,6 +38,9 @@ class MovingImgEffect {
     (this.start && this.initialize());
   }
 
+  /**
+   * Addds the image to the parent and starts the animation.
+   */
   initialize() {
     if (this.loaded === true) {
       // Set the image size according to initial viewport size:
@@ -44,6 +48,7 @@ class MovingImgEffect {
         this.img.width = this.initialWidth / 2;
         this.img.height = this.initialHeight /2;
       }
+      this.disabled = false;
       this._reposition();
       this.parent.appendChild(this.img);
       this.window.requestAnimationFrame(this._animate.bind(this));
@@ -78,14 +83,21 @@ class MovingImgEffect {
     ) {
       this.vx = -this.vx;
     }
-    this.window.requestAnimationFrame(this._animate.bind(this));
+    if (!this.disabled) this.window.requestAnimationFrame(
+      this._animate.bind(this)
+    );
   }
 
   removeImg() {
     if (this.document.getElementById(this.img.id)) {
       this.parent.removeChild(this.img);
       this.loaded = false;
+      this.disabled = false;
     }
+  }
+
+  stop() {
+    this.disabled = true;
   }
 
 }
