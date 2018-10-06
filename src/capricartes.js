@@ -250,6 +250,9 @@ class Capricartes {
     );
     this.hidePreviewBar();
     this.showSection('form');
+    // Apply the disable functions that may
+    // be in the state:
+    this.state.disableObjects.forEach(o => o.disable());
     this._resetCard(this.sections[2]);
   }
 
@@ -553,9 +556,9 @@ class Capricartes {
   showGreetingCard(el) {
     // Prepare a list with "disable" functions used to remove
     // some effects:
-    this.state.disableFunctions = [];
+    this.state.disableObjects = [];
     const addDisFn = (obj) => {
-      if (obj.fn) this.state.disableFunctions.push(obj.fn);
+      if (obj.disable) this.state.disableObjects.push(obj);
     };
 
     if (this.state.background === undefined) this.state.background = 0;

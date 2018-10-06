@@ -309,6 +309,9 @@ const cardStuff = {
           true
         );
         else this.imgEffect.initialize();
+      },
+      disable: function() {
+        if (this.imgEffect) this.imgEffect.stop();
       }
     },
     cardStuffFactories.TemplateContent(
