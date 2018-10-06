@@ -79,6 +79,7 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [x] Add a capric favicon and all the social tags + meta description.
 - [ ] Allow selecting different text styles for the title.
 - [ ] Line feeds do not work in slides, I'd need to use <pre> or transform the line feeds into br elements somehow, which will require adding the HTML content, which is dangerous. That's a lot of whiches.
+- [ ] Add inner drop shadow to the brown background to make it a little more interesting.
 - [x] What happens if you add the query parameter "s" twice with twice the slides and the URL parsing?
 - [x] Preview has to change the URL for the back button to work, I have notes about this in my Notebook and a test file somewhere.
 - [ ] Instead of using data-ray as an attribute to select the rays of my rainbow I could group them inside a <g> element and use a query selector to get them from there. It should work.
@@ -87,7 +88,7 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [ ] Put the 'close' SVG in an external file, and add a viewbox to it for easy resize.
 - [ ] Double check that we can't actually add HTML code to the pages using the URL.
 - [ ] Test using special characters (emojis) in slides or the title, in all browsers.
-- [ ] Add the rotating crapice to the title. Maybe only rotate on hover? And/Or add it to the loading page. Could be an effect too.
+- [ ] I don't have any effect with rotation, just keeping that in mind.
 - [ ] Add links to my stuff at the bottom.
 - [x] Use border-radius on the input tags. And probably also on the buttons.
 - [x] Try using transparent input fields.
