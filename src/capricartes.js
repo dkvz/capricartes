@@ -551,9 +551,19 @@ class Capricartes {
   }
 
   showGreetingCard(el) {
-    cardStuff.backgrounds[
-      this.state.background !== undefined ? this.state.background : 0
-    ].enable(el);
+    // Prepare a list with "disable" functions used to remove
+    // some effects:
+    this.state.disableFunctions = [];
+    const addDisFn = (obj) => {
+      if (obj.fn) this.state.disableFunctions.push(obj.fn);
+    };
+
+    if (this.state.background === undefined) this.state.background = 0;
+    cardStuff.backgrounds[this.state.background].enable(el);
+    addDisFn(cardStuff.backgrounds[this.state.background]);
+    
+    // We have a background.
+    // Let's show the card from there.
     this.showSection('card');
     if (this.state.title) {
       const cardTitle = this.document.createElement('h1');
@@ -572,14 +582,21 @@ class Capricartes {
       slidesComp.attach(el);
     }
 
-    if (this.state.foreground !== undefined) 
+    if (this.state.foreground !== undefined) {
       cardStuff.foregrounds[this.state.foreground].enable(el);
+      addDisFn(cardStuff.foregrounds[this.state.foreground]);
+    }
+    
     if (this.state.effects) 
       this.state.effects.forEach(e => {
         cardStuff.effects[e].enable(el, this.window, this.document);
+        addDisFn(cardStuff.effects[e]);
       });
     if (this.state.music !== undefined) {
       const audio = cardStuff.tunes[this.state.music].enable();
+      // For now music has a single factory method with no disable()
+      // required, but we might as well make it consistent:
+      addDisFn(cardStuff.tunes[this.state.music]);
       el.appendChild(audio);
       audio.play();
     }
