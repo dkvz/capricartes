@@ -217,6 +217,10 @@ const cardStuff = {
       'Colorful',
       'bg-animated-gradient'
     ),
+    cardStuffFactories.BackgroundCSSClass(
+      'Tout brun',
+      'bg-brown'
+    ),
     cardStuffFactories.BackgroundPattern(
       'Is that a private joke?',
       imgs.patgpib,
