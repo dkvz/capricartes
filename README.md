@@ -44,13 +44,13 @@ Check the scripts section of package.json. Also run `npm install` at some point.
 I decided against effect preview for the moment, also we can select more than one.
 
 * DONE - Request animation frame crapic head bouncing around
-* Add a glowing sun? Just a round div with a gradient that transitions in size (the div does)
+* DONE Add a glowing sun? Just a round div with a gradient that transitions in size (the div does)
   * Don't forget to use 3D transform to use the GPU
     * I don' t use 3D transform but I got this: https://codepen.io/dkvz/pen/mGvWxY
-* Add a rainbow (huge svg to draw)
+* DONE Add a rainbow (huge svg to draw)
   * Found one here: https://upload.wikimedia.org/wikipedia/commons/b/b0/PEO-rainbow_solid.svg
-* Random weird gifs appearing
-* Cat head coming in from the bottom then hiding again
+* DONE Random weird gifs appearing
+* DONE Cat head coming in from the bottom then hiding again
 
 ### Babel
 I debated using Babel. I think I'll stick to ES6 and not supporting older browsers.
@@ -72,6 +72,9 @@ Instead of inlining SVGs I used the external file but had to hardcode a fill col
 ```
 At some point I started using inline SVG anyway. So I should replace the shitty SVGs I'm using with drawings of my own.
 
+### Old browser detection
+I use this Modernizr link: https://modernizr.com/download?arrow-promises-setclasses&q=es6
+
 ## Issues
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
@@ -85,8 +88,8 @@ At some point I started using inline SVG anyway. So I should replace the shitty 
 - [ ] Instead of using data-ray as an attribute to select the rays of my rainbow I could group them inside a <g> element and use a query selector to get them from there. It should work.
 - [ ] I could do error catching with calls to atob in cardFromUrl, as these can throw errors for invalid character, which right now results in a never-ending loading screen.
 - [x] Music select and preview are really not on the same level on Chrome.
-- [ ] Put the 'close' SVG in an external file, and add a viewbox to it for easy resize.
-- [ ] Double check that we can't actually add HTML code to the pages using the URL.
+- [x] Put the 'close' SVG in an external file, and add a viewbox to it for easy resize.
+- [x] Double check that we can't actually add HTML code to the pages using the URL.
 - [ ] Test using special characters (emojis) in slides or the title, in all browsers.
 - [ ] I don't have any effect with rotation, just keeping that in mind.
 - [ ] Add links to my stuff at the bottom.

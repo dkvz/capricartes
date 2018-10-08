@@ -1,5 +1,6 @@
 
 import MovingImgEffect from './moving-img-effect';
+import RandomGifsEffect from './random-gifs-effect';
 
 const imgs = {
   capriboite1: require('../static/crapic_1.png'),
@@ -31,6 +32,11 @@ const imgs = {
   capribrutPv: require('../static/crapicbrut_preview.png'),
   capritetdroite: require('../static/geubitetedroite.png')
 };
+
+imgs.gifs = [];
+for (let i = 1; i <= 11; i++) {
+  imgs.gifs.push(require('../static/' + i + '.gif'));
+}
 
 const cardStuffFactories = {
 
@@ -315,7 +321,7 @@ const cardStuff = {
         else this.imgEffect.initialize();
       },
       disable: function() {
-        if (this.imgEffect) this.imgEffect.stop();
+        this.imgEffect && this.imgEffect.stop();
       }
     },
     cardStuffFactories.TemplateContent(
@@ -358,7 +364,7 @@ const cardStuff = {
           );
         });
       },
-      enable(el, window, document) {
+      enable: function(el, window, document) {
         const setImage = (img) => {
           if (el.offsetWidth < 1000) {
             img.height = img.height / 1.6;
@@ -373,6 +379,41 @@ const cardStuff = {
             setImage(this.img);
           });
         else setImage(this.img);
+      }
+    },
+    {
+      name: 'Random gifs',
+      preload: function(callback, el, window, document) {
+        return new Promise((resolve, reject) => {
+          this.gifsEffect = new RandomGifsEffect(
+            window,
+            document,
+            el,
+            imgs.gifs,
+            _ => {
+              (callback && callback());
+              resolve();
+            }
+          );
+        });
+      },
+      enable: function(el, window, document) {
+        if (!this.gifsEffect) {
+          this.gifsEffect = new RandomGifsEffect(
+            window,
+            document,
+            el,
+            imgs.gifs,
+            _ => {
+              this.gifsEffect.initialize();
+            }
+          )
+        } else {
+          this.gifsEffect.initialize();
+        }
+      },
+      disable: function() {
+        this.gifsEffect && this.gifsEffect.stop();
       }
     }
   ],
