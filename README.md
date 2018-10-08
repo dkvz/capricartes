@@ -79,6 +79,10 @@ I use this Modernizr link: https://modernizr.com/download?arrow-promises-setclas
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
 ## TODO
+- [ ] Chrome mobile:
+  - [ ] Previewing audio doesn't seem to work.
+  - [ ] The popping caprice head causes overflow scrolling to activate.
+- [ ] Chrome won't play audio unless the user has interacted with the UI. So we need some kind of play button.
 - [x] Add a capric favicon and all the social tags + meta description.
 - [ ] Allow selecting different text styles for the title.
 - [ ] Line feeds do not work in slides, I'd need to use <pre> or transform the line feeds into br elements somehow, which will require adding the HTML content, which is dangerous. That's a lot of whiches.
