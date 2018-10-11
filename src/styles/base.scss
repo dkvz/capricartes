@@ -48,6 +48,14 @@ section {
   width: 100%;
 }
 
+.reduce1 {
+  font-size: 0.65em;
+}
+
+.reduce2 {
+  font-size: 0.5em;
+}
+
 /*#loading, #form {
   background: #C6FFDD;
   background: linear-gradient(to right, $bg-color, $golderz, $greenerz);
@@ -478,7 +486,7 @@ https://codepen.io/P1N2O/pen/pyBNzX
   width: 100%;
   height: 200px;
   overflow: hidden;
-  background-color: slateblue;
+  background-color: rgb(172, 162, 238);
   color: white;
   box-shadow: 0px 0px 8px 5px #333;
   padding: 15px;
@@ -752,4 +760,30 @@ svg[data-action], img[data-action] {
   bottom: 0;
   transform: translate(100%, 100%);
   animation: popHead 6s ease-in 0s infinite;
+}
+
+.footer {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  background-color: rgba(250, 250, 250, 0.6);
+  /*background-color: lighten($bg-color, 15%);*/
+  padding: 14px 14px 14px 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: $title-color;
+  /*text-shadow: 0 0 2px darken($bg-color, 20%);*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include tablet {
+    width: 80%;
+    padding: 16px 16px;
+  }
+
+  @include desktop {
+    width: 50%;
+    padding: 16px 16px;
+  }
 }

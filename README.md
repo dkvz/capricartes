@@ -81,7 +81,7 @@ I use this Modernizr link: https://modernizr.com/download?arrow-promises-setclas
 ## TODO
 - [ ] Chrome mobile:
   - [ ] Previewing audio doesn't seem to work.
-  - [ ] The popping caprice head causes overflow scrolling to activate.
+  - [x] The popping caprice head causes overflow scrolling to activate.
 - [ ] Chrome won't play audio unless the user has interacted with the UI. So we need some kind of play button.
 - [x] Add a capric favicon and all the social tags + meta description.
 - [ ] Allow selecting different text styles for the title.
