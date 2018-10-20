@@ -78,6 +78,29 @@ I use this Modernizr link: https://modernizr.com/download?arrow-promises-setclas
 ## Issues
 - [x] On Chrome, when you preview with a music, close the preview, then open a new one, the same music continues. It doesn't get replaced (it does in Firefox for some reason).
 
+### The Chrome mobile audio preview issue
+I get an exception on Chrome mobile only which basically looks like this:
+```
+Uncaught (in promise) DOMException: play() can only be initiated by a user gesture.
+```
+
+I've seen people say that you just have to call play from an event listener associated to a gesture (so click is fine).
+
+That method should be `previewMusicClick`. And yes, play appears to be inside of a promise.
+
+I think the play logic has to completely change. I probably have to use the specific media events to detect when loading is done, and stop spinning the preview play icon when that's done.
+
+The whole 'preload' function from card-stuff is now useless as the entire logic of this has to change. Also, playing the sound on the greeting card itself will also require a click event listener somewhere (I was think a floating note and play button).
+The "preloading" will then happen on the fly.
+
+This should become useless in loadGreetingCard:
+```
+if (this.state.music !== undefined) 
+      promises.push(cardStuff.tunes[this.state.music]);
+```
+
+I should make a whole test page that I can easily debug on Android.
+
 ## TODO
 - [ ] Chrome mobile:
   - [ ] Previewing audio doesn't seem to work.
