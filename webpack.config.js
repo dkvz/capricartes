@@ -72,7 +72,7 @@ const config = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
+              limit: 1000,
               name: 'static/[name][hash:7].[ext]'
             }
           }
