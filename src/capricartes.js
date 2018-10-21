@@ -344,12 +344,12 @@ class Capricartes {
   previewMusicClick() {
     // Check if music is currently playing:
     if (this.audio && !this.audio.paused) {
+      this.state.musicPlaying = false;
       this.audio.currentTime = 0;
       this.audio.pause();
-      // Put the image back to "play":
-      this.musicPreviewImg.src = playButton;
-      this.musicPreviewImg.classList.remove('spinning');
-      this.state.musicPlaying = false;
+      // We're using the 'canplay' event to remove the spinning
+      // effect of the play button.
+      //this.musicPreviewImg.classList.remove('spinning');
     } else {
       // Let's not recycle the audio tag,
       // we're re-creating it.
@@ -358,14 +358,28 @@ class Capricartes {
       // Check the selected index, set it as selectedMusic
       // in the state.
       if (this.musicSelect.selectedIndex != 0) {
+        this.state.musicPlaying = true;
         this.musicPreviewImg.src = playButton;
         this.musicPreviewImg.classList.add('spinning');
-        //this.musicPreviewImg.src = stopButton;
         // This state thing is completely useless, why is it
         // there?
-        this.state.musicPlaying = true;
         this.state.selectedMusic = this.musicSelect.selectedIndex;
-        cardStuff.tunes[this.state.selectedMusic - 1].preload(_ => {
+        
+        this.audio = cardStuff.tunes[this.state.selectedMusic - 1].enable();
+        this.audio.addEventListener('canplay', _ => {
+          // canplay actually also gets called every single time
+          // you pause the audio (or call .pause() ofc).
+          this.musicPreviewImg.classList.remove('spinning');
+          this.musicPreviewImg.src = this.audio.paused ? 
+            playButton : stopButton;
+        });
+        this.audio.play();
+        
+        // The following code was retired because Chrome made it so
+        // that to play audio, the play() method has to be directly 
+        // inside a UI event listener or it will get blocked by Chrome.
+        /* **************************** */
+        /*cardStuff.tunes[this.state.selectedMusic - 1].preload(_ => {
           // This event can be called when pausing...
           // Which is a problem.
           if (this.state.musicPlaying) {
@@ -374,7 +388,8 @@ class Capricartes {
             this.musicPreviewImg.src = stopButton;
             this.audio.play();
           }
-        }, true);
+        }, true);*/
+
       }
     }
   }
