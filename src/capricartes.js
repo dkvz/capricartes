@@ -611,12 +611,32 @@ class Capricartes {
         addDisFn(cardStuff.effects[e]);
       });
     if (this.state.music !== undefined) {
+      // Music used to auto-play, but Chrome (and possibly others, 
+      // possibly all of them at some point) is blocking any calls
+      // to play() unless it's done from a UI event listener that
+      // the user has interacted with. So everything had to be
+      // refactored to pop up a weird play button on the card.
+
       const audio = cardStuff.tunes[this.state.music].enable();
+      const pb = 
+          document.getElementById('playControls')
+          .content.cloneNode(true);
+      const fp = pb.querySelector('.floatingPlay');
+      
+      const closePb = _ => fp.style.opacity = 0;
+      const playB = fp.querySelector('.playBtn');
+      fp.querySelector('.close-link').addEventListener('click', closePb);
+      playB.addEventListener('click', closePb);
+      playB.addEventListener('click', _ => {
+        audio.play();
+      });
+
       // For now music has a single factory method with no disable()
       // required, but we might as well make it consistent:
       addDisFn(cardStuff.tunes[this.state.music]);
       el.appendChild(audio);
-      audio.play();
+      el.appendChild(pb);
+      //audio.play();
     }
   }
 

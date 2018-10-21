@@ -114,10 +114,7 @@
       </template>
       <div class="clearfixerz"></div>
       <label>
-        Music 
-        <span class="reduce1">
-          (Doesn't work on Chrome <span class="reduce2">and some mobiles</span>)
-        </span>:
+        Music:
       </label>
       <div class="line-em-up">
         <select id="musicSelect">
@@ -200,6 +197,7 @@
           <circle r="10" cx="50" cy="50" fill="black" />
         </mask>
       </defs>
+      <!-- The mask thing could be assigned through CSS -->
       <circle data-ray cx="50" cy="50" r="45" fill="#f00" mask="url(#svgHole)" />
       <circle data-ray cx="50" cy="50" r="40" fill="#ff7f00" mask="url(#svgHole)" />
       <circle data-ray cx="50" cy="50" r="35" fill="#ff0" mask="url(#svgHole)" />
@@ -208,6 +206,27 @@
       <circle data-ray cx="50" cy="50" r="20" fill="#4b0082" mask="url(#svgHole)" />
       <circle data-ray cx="50" cy="50" r="15" fill="#9400d3" mask="url(#svgHole)" />
     </svg>
+  </template>
+  <template id="playControls">
+    <div class="floatingPlay">
+      <div class="close">
+        <span class="head-title">Music</span>
+        <span class="close-link">&times;</span>
+      </div>
+      <div class="fp-controls">
+        <svg class="svgNote" width="44" height="38" viewBox="0 0 74 80">
+          <circle cx="20" cy="60" r="15" />
+          <line x1="32" y1="60" x2="32" y2="10" />
+          <path d="M32 10 Q 56 10, 56 25" />
+        </svg>
+        <button class="playBtn">
+          <svg class="playSvg" width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="18" stroke="#000" />
+            <path d="M15 10 L15 30 L30 20" />
+          </svg>
+        </button>
+      </div>
+    </div>
   </template>
 </body>
 </html>

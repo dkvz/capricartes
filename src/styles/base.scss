@@ -578,15 +578,15 @@ svg[data-action], img[data-action] {
   to {top:0; opacity:1}
 }
 
-.close {
+.modal .close {
   color: #fff;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.modal .close:hover,
+.modal .close:focus {
   color: $title-color;
   text-decoration: none;
   cursor: pointer;
@@ -796,4 +796,81 @@ svg[data-action], img[data-action] {
     text-decoration: none;
   }
 
+}
+
+.floatingPlay {
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  background-color: $title-color;
+  padding: 0;
+  box-shadow: 0px 0px 10px 5px rgba(20, 20, 20, 0.75);
+  animation: scaler 1.5s infinite;
+  opacity: 0.9;
+  z-index: 101;
+  transition: opacity 1s;
+
+  @include tablet {
+    left: 15%;
+    top: 15%;
+  }
+
+  @include desktop {
+    left: 10%;
+    top: 10%;
+  }
+
+  .close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $bg-color;
+    font-size: 1.1em;
+  }
+
+  .head-title {
+    padding-left: 2px;
+    font-size: 0.72em;
+    color: #fff;
+  }
+
+  .fp-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .playBtn {
+    display: flex;
+    background-color: transparent;
+    border: 5px $bg-color solid;
+  }
+
+  .close-link {
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .close-link:hover {
+    color: slateblue;
+  }
+
+}
+
+.svgNote circle {
+  fill: slateblue;
+}
+
+.svgNote line, .svgNote path {
+  fill: transparent;
+  stroke: slateblue;
+  stroke-width: 4;
+}
+
+.playSvg circle {
+  fill: slateblue;
+}
+
+.playSvg path {
+  fill: white;
+  stroke: white;
 }

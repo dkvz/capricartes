@@ -102,10 +102,10 @@ if (this.state.music !== undefined)
 I should make a whole test page that I can easily debug on Android.
 
 ## TODO
-- [ ] Chrome mobile:
-  - [ ] Previewing audio doesn't seem to work.
+- [ ] If music is playing as preview in the form view, and we hit preview, it doesn't stop. It should stop.
+- [x] Chrome mobile:
+  - [x] Previewing audio doesn't seem to work -> Chrome doesn't play audio unless play() is directly in a UI event listener.
   - [x] The popping caprice head causes overflow scrolling to activate.
-- [ ] Chrome won't play audio unless the user has interacted with the UI. So we need some kind of play button.
 - [x] Add a capric favicon and all the social tags + meta description.
 - [ ] Allow selecting different text styles for the title.
 - [ ] Line feeds do not work in slides, I'd need to use <pre> or transform the line feeds into br elements somehow, which will require adding the HTML content, which is dangerous. That's a lot of whiches.
@@ -119,7 +119,7 @@ I should make a whole test page that I can easily debug on Android.
 - [x] Double check that we can't actually add HTML code to the pages using the URL.
 - [ ] Test using special characters (emojis) in slides or the title, in all browsers.
 - [ ] I don't have any effect with rotation, just keeping that in mind.
-- [ ] Add links to my stuff at the bottom.
+- [x] Add links to my stuff at the bottom.
 - [x] Use border-radius on the input tags. And probably also on the buttons.
 - [x] Try using transparent input fields.
 - [ ] Add font antialiasing.
