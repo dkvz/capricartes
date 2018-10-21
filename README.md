@@ -102,7 +102,7 @@ if (this.state.music !== undefined)
 I should make a whole test page that I can easily debug on Android.
 
 ## TODO
-- [ ] If music is playing as preview in the form view, and we hit preview, it doesn't stop. It should stop.
+- [x] If music is playing as preview in the form view, and we hit preview, it doesn't stop. It should stop.
 - [x] Chrome mobile:
   - [x] Previewing audio doesn't seem to work -> Chrome doesn't play audio unless play() is directly in a UI event listener.
   - [x] The popping caprice head causes overflow scrolling to activate.
