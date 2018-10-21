@@ -542,7 +542,7 @@ svg[data-action], img[data-action] {
   display: none;
   position: fixed;
   z-index: 80;
-  padding-top: 100px;
+  padding-top: 50px;
   left: 0;
   top: 0;
   width: 100%;
@@ -598,11 +598,19 @@ svg[data-action], img[data-action] {
   text-align: center;
 }
 
-.modal-body {
+.modal-body, .modal-body-help {
   background-color: $golderz;
   background: linear-gradient(to right, $bg-color, $golderz, $greenerz);
   padding: 2px 6px;
+}
+
+.modal-body {
   text-align: center;
+}
+
+.modal-body-help {
+  max-height: 45vh;
+  overflow-y: auto;
 }
 
 /** End modal styles **/
@@ -874,3 +882,26 @@ svg[data-action], img[data-action] {
   fill: white;
   stroke: white;
 }
+
+#helpSvg {
+  height: 32px;
+  width: 32px;
+  fill: $title-color;
+  cursor: pointer;
+
+  @include tablet {
+    height: 48px;
+    width: 48px;
+  }
+
+  @include desktop {
+    height: 64px;
+    width: 64px;
+  }
+
+}
+
+#helpSvg:hover {
+  filter: drop-shadow(0px 0px 10px darken($bg-color, 10%));
+}
+

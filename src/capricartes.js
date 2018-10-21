@@ -74,6 +74,7 @@ class Capricartes {
     this.musicPreviewImg = this.document.getElementById('musicPreviewImg');
     this.loadingModal = this.document.getElementById('loadingModal');
     this.showLinkModal = this.document.getElementById('showLinkModal');
+    this.helpModal = this.document.getElementById('helpModal');
     this.previewBar = this.document.getElementById('previewBar');
     this.cardLink = this.document.getElementById('cardLink');
     this.loadingModal.querySelector('.close').addEventListener(
@@ -90,6 +91,12 @@ class Capricartes {
     );
     this.showLinkModal.querySelector('button:last-child').addEventListener(
       'click', this.copyUrlToClipboard.bind(this)
+    );
+    this.helpModal.querySelector('.close').addEventListener(
+      'click', this.hideHelpDialog.bind(this)
+    );
+    this.helpModal.querySelector('button').addEventListener(
+      'click', this.hideHelpDialog.bind(this)
     );
 
     this.state.slides = [];
@@ -147,6 +154,9 @@ class Capricartes {
     this.document
       .getElementById('generateButton')
       .addEventListener('click', this.showLinkDialog.bind(this));
+    this.document
+      .getElementById('helpButton')
+      .addEventListener('click', this.showHelpDialog.bind(this));
 
     this.window
       .addEventListener('popstate', this.previewPopstateCallback.bind(this));
@@ -164,7 +174,15 @@ class Capricartes {
     this.state.cardUrl = this.getUrlFromForm();
     this.cardLink.textContent = this.state.cardUrl;
     this.cardLink.href = this.state.cardUrl;
-    this.showLinkModal.style.display = 'block'; 
+    this.showLinkModal.style.display = 'block';
+  }
+
+  showHelpDialog() {
+    this.helpModal.style.display = 'block';
+  }
+
+  hideHelpDialog() {
+    this.helpModal.style.display = '';
   }
 
   getUrlFromForm() {
