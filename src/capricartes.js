@@ -207,6 +207,9 @@ class Capricartes {
   showCardPreview() {
     this.state.cancelledPreview = false;
     this.cardFromForm();
+    if (this.audio && !this.audio.paused) {
+      this.stopMusicPreview();
+    }
     this.showLoadingModal();
     this.loadGreetingCard(this.sections[2], _ => {
       this.hideLoadingDialog();
@@ -341,12 +344,18 @@ class Capricartes {
     }
   }
 
+  // You should check that this.audio exists before using
+  // this method.
+  stopMusicPreview() {
+    this.state.musicPlaying = false;
+    this.audio.currentTime = 0;
+    this.audio.pause();
+  }
+
   previewMusicClick() {
     // Check if music is currently playing:
     if (this.audio && !this.audio.paused) {
-      this.state.musicPlaying = false;
-      this.audio.currentTime = 0;
-      this.audio.pause();
+      this.stopMusicPreview();
       // We're using the 'canplay' event to remove the spinning
       // effect of the play button.
       //this.musicPreviewImg.classList.remove('spinning');
