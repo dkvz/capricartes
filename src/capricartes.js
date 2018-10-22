@@ -3,6 +3,7 @@ import { addHtmlOption, addOptionFromTemplate, removeNodesFromElement } from './
 import playButton from '../static/play_filled.svg';
 import stopButton from '../static/stop_filled.svg';
 import Slides from './slides';
+import DkvzTranslator from './dkvz-translator';
 
 class Capricartes {
   constructor(window, document) {
@@ -22,6 +23,14 @@ class Capricartes {
 
   init() {
     this.slidesTemplate = this.document.getElementById('slidesTpl');
+    // Load the translator, Webpack is injecting the JSON
+    // data in there directly.
+    this.translator = new DkvzTranslator(
+      require('./locales.json')
+    );
+    this.translator.guessLanguageFromBrowser(this.window);
+    this.translator.translateTree(this.document.body);
+    
     if (this.window.location.pathname == '/crapic') {
       // The actual greeting card.
       // Requires a loading screen.

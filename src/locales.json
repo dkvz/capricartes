@@ -1,0 +1,12 @@
+{
+  "en": {
+    "loading": "Loading",
+    "changeLanguage": "Change language",
+    "cartTitle": "Titre de la carte:"
+  },
+  "fr": {
+    "loading": "Chargement",
+    "changeLanguage": "Changer la langue",
+    "cartTitle": "Greeting card title:"
+  }
+}
