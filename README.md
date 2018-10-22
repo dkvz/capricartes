@@ -101,7 +101,13 @@ if (this.state.music !== undefined)
 
 I should make a whole test page that I can easily debug on Android.
 
+### i18n
+I'm going to write my own i18n logic as an exercise. For any simple translating work I can write something much smaller than i18next.
+
+For the language selector I'm going to use this svg from Wikimedia commons: https://commons.wikimedia.org/wiki/File:Blank_globe.svg
+
 ## TODO
+- [ ] The translating system must also translate title attributes, if present.
 - [x] If music is playing as preview in the form view, and we hit preview, it doesn't stop. It should stop.
 - [x] Chrome mobile:
   - [x] Previewing audio doesn't seem to work -> Chrome doesn't play audio unless play() is directly in a UI event listener.
