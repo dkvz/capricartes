@@ -2,11 +2,25 @@
   "en": {
     "loading": "Loading",
     "changeLanguage": "Change language",
-    "cartTitle": "Titre de la carte:"
+    "cartTitle": "Greeting card title:",
+    "cancel": "Cancel",
+    "yourLink": "Your link",
+    "linkDiagMsg": "Copy-paste the following link to share your greeting card:",
+    "close": "Close",
+    "copyToClip": "Copy to clipboard",
+    "aboutApp": "About this app",
+    "aboutAppText": "<p>Capricartes is a greeting card generator.</p><p>You may provide a title, additional text, a background and foreground image, one or more effects, and background music.</p><p>Everything is optional, so just pick and choose, then preview using the Preview button at the bottom.</p><p>Once you're happy with the result, just hit \"Generate your link!\" and copy paste the URL in the dialog.</p><p>Do note that there is an elusive maximum URL length that browsers will support. Noone really knows what it is, but just don't write too much text okay?</p><p>The music won't start unless the user clicks a play button because Chrome devs thought auto-playing music could be abusive. I guess they're right. So no fun allowed there.</p><p>You might be wondering if enabling all the effects would drain a fully charged phone battery in about the run time of a SpongeBob Squarepants episode, and yes, it would.</p>"
   },
   "fr": {
     "loading": "Chargement",
     "changeLanguage": "Changer la langue",
-    "cartTitle": "Greeting card title:"
+    "cartTitle": "Titre de la carte:",
+    "cancel": "Annuler",
+    "yourLink": "Votre lien",
+    "linkDiagMsg": "Vous pouvez copier-coller le lien ci-dessous pour partager votre carte de voeu:",
+    "close": "Fermer",
+    "copyToClip": "Copier dans le presse-papier",
+    "aboutApp": "A propos de cette app",
+    "aboutAppText": "<p>Capricartes est un générateur de cartes de voeu.</p><p>Vous pouvez ajouter un titre, du texte additionnel, une image d'arrière-plan, d'avant-plan, un ou plusieurs effets et une musique d'ambiance.</p><p>Tout est optionnel donc prenez ce qui vous intéresse puis prévisualiez le résultat à l'aide du bouton \"Prévisualisation\n en bas de la page.</p><p>Une fois satisfaits du résultat, cliquez sur \"Générer mon lien!\" et copier-collez l'URL où bon vous semble pour partager la carte.</p><p>Notez qu'il existe un mystérieux maximum de taille d'URL que les navigateurs autorisent. Personne n'est vraiment au courant de l'étendue de cette limite.</p><p>La musique ne démarrera que si l'utilisateur clique sur un bouton parce que les développeurs de Chrome ont décidé que de la musique qui se lance automatiquement c'était potentiellement abusif. On a plus le droit de s'amuser.</p><p>Vous vous demandez peut-être si activer tous les effets simultanément pourrait drainer la totalité d'une batterie de mobile chargée à 100% en la moitié du temps de diffusion d'un épisode de Bob L'éponge. Oui, ça pourrait.</p>"
   }
 }

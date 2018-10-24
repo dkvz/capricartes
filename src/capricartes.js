@@ -21,6 +21,10 @@ class Capricartes {
     });
   }
 
+  translateAll() {
+    this.translator.translateTree(this.document.body);
+  }
+
   init() {
     this.slidesTemplate = this.document.getElementById('slidesTpl');
     // Load the translator, Webpack is injecting the JSON
@@ -29,8 +33,8 @@ class Capricartes {
       require('./locales.json')
     );
     this.translator.guessLanguageFromBrowser(this.window);
-    this.translator.translateTree(this.document.body);
-    
+    this.translateAll();
+
     if (this.window.location.pathname == '/crapic') {
       // The actual greeting card.
       // Requires a loading screen.
@@ -69,7 +73,7 @@ class Capricartes {
     // For the moment we only use pushstate to make the back button work on
     // the card preview screen.
 
-    // Register the event listener for the form.
+    // Register the event listeners for the form.
     this.titleInput = this.document.getElementById('titleInput');
     this.backgroundPreview = this.document.getElementById('backgroundPreview');
     this.imagePreview = this.document.getElementById('imagePreview');
@@ -86,6 +90,7 @@ class Capricartes {
     this.helpModal = this.document.getElementById('helpModal');
     this.previewBar = this.document.getElementById('previewBar');
     this.cardLink = this.document.getElementById('cardLink');
+    this.langSelect = this.document.getElementById('langSelect');
     this.loadingModal.querySelector('.close').addEventListener(
       'click', this.cancelPreview.bind(this)
     );
@@ -125,6 +130,13 @@ class Capricartes {
       addHtmlOption(this.musicSelect, m.name, this.document, i);
     });
 
+    // Languages:
+    this.translator.getLanguages().forEach((l, i) => {
+      addHtmlOption(this.langSelect, l.toUpperCase() ,this.document, l);
+      if (l === this.translator.getLanguage()) 
+        this.langSelect.selectedIndex = i;
+    });
+
     // Now add the effects as checkboxes:
     const checkboxTemplate = this.document.getElementById('chkboxTpl');
     cardStuff.effects.forEach((e, i) => {
@@ -138,11 +150,16 @@ class Capricartes {
       );
     });
 
+
     this.backgroundSelect
       .addEventListener('change', this._previewBackground.bind(this));
     this.imageSelect
       .addEventListener('change', this._previewImage.bind(this));
-
+    this.langSelect
+      .addEventListener('change', _ => {
+        this.translator.changeLanguage(this.langSelect.value);
+        this.translateAll();
+      });
     this.document
       .getElementById('addSlideButton')
       .addEventListener('click', this.addSlideClick.bind(this));
