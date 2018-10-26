@@ -464,7 +464,8 @@ class Capricartes {
   }
 
   _updateSlidesCount() {
-    this.slidesCount.innerText = this.state.slides.length + ' Slide(s)...';
+    this.slidesCount.innerText = 
+      this.state.slides.length + ' ' + this.translator.t('slidesCountInit');
   }
 
   vibrateElement(el) {

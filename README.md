@@ -108,6 +108,8 @@ For the language selector I'm going to use this svg from Wikimedia commons: http
 
 ## TODO
 - [ ] The translating system must also translate title attributes, if present.
+- [ ] The back button on preview doesn't actually works. It sometimes does for some reason but not always.
+- [ ] I need to translate all the backgrounds, effects, etc. Maybe not the music. I could add an attribute called "translateKey" to card-stuff.js.
 - [x] If music is playing as preview in the form view, and we hit preview, it doesn't stop. It should stop.
 - [x] Chrome mobile:
   - [x] Previewing audio doesn't seem to work -> Chrome doesn't play audio unless play() is directly in a UI event listener.
@@ -129,6 +131,7 @@ For the language selector I'm going to use this svg from Wikimedia commons: http
 - [x] Use border-radius on the input tags. And probably also on the buttons.
 - [x] Try using transparent input fields.
 - [ ] Add font antialiasing.
+- [ ] When you switch languages with slides saved, the slides count disappears. I decided this was OK but might as well put it on the todo list.
 - [x] Use template tags for reusable stuff that I need to insert.
 - [x] Use a transition for the hover on buttons.
 - [x] onChange doesn't trigger when clicking the same element in a select element. I need another plan for that. The first option element should be the amount of slides. That way it should work.

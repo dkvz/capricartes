@@ -2,6 +2,11 @@ class DkvzTranslator {
 
   constructor(resources, defaultLanguage) {
     this.resources = resources;
+    // Initializing a bunch of constants we use as
+    // attributes on elements to translate:
+    this.tAttr = 'data-t';
+    this.tAttrs = 'data-t-attr';
+    this.tHTMLAttr = 'data-t-h';
     // I'm not doing error checking on resources, 
     // this class will throw error if things are weird.
     if (this.defaultLanguage) this.lang = defaultLanguage;
@@ -26,22 +31,36 @@ class DkvzTranslator {
   }
 
   translateTree(el) {
-    el.querySelectorAll('[data-t]').forEach(n => {
-      n.textContent = this.t(n.getAttribute('data-t'));
+    el.querySelectorAll('[' + this.tAttr + ']').forEach(n => {
+      n.textContent = this.t(n.getAttribute(this.tAttr));
     });
-    el.querySelectorAll('[data-t-attr]').forEach(n => {
-      n.getAttribute('data-t-attr').split(',')
+    el.querySelectorAll('[' + this.tAttrs + ']').forEach(n => {
+      n.getAttribute(this.tAttrs).split(',')
         .map(attr => attr.trim())
         .forEach(attr => {
+          let key;
+          if (n.hasAttribute(this.tAttrs + attr)) {
+            // This attribute has been translated previously.
+            // We need to use the saved translate string.
+            key = n.getAttribute(this.tAttrs + attr);
+          } else {
+            // I need to save the translate string
+            // somewhere to find it later on.
+            key = n.getAttribute(attr);
+            n.setAttribute(
+              this.tAttrs + attr, 
+              key
+            );
+          }
           n.setAttribute(
             attr,
-            this.t(n.getAttribute(attr))
+            this.t(key)
           );
         });
     });
     // These are to be injected HTML:
-    el.querySelectorAll('[data-t-h]').forEach(n => {
-      n.innerHTML = this.t(n.getAttribute('data-t-h'));
+    el.querySelectorAll('[' + this.tHTMLAttr + ']').forEach(n => {
+      n.innerHTML = this.t(n.getAttribute(this.tHTMLAttr));
     });
   }
 
