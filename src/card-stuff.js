@@ -40,7 +40,7 @@ for (let i = 1; i <= 11; i++) {
 
 const cardStuffFactories = {
 
-  BackgroundCSSClass: function(name, className, src, previewSrc) {
+  BackgroundCSSClass: function(name, className, src, previewSrc, translate = false) {
     const ret = {};
     if (src) {
       ret.preload = (callback, preview) => 
@@ -53,6 +53,7 @@ const cardStuffFactories = {
             });
         });
     }
+    ret.translate = translate;
     ret.name = name;
     ret.enable = (el, preview) => {
       el.classList.add((preview && previewSrc) ? 
@@ -60,7 +61,7 @@ const cardStuffFactories = {
     };
     return ret;
   },
-  BackgroundImage: function(name, src, previewSrc, positionClass) {
+  BackgroundImage: function(name, src, previewSrc, positionClass, translate = false) {
     const ret = {};
     ret.preload = (callback, preview) => 
     new Promise((resolve) => {
@@ -71,6 +72,7 @@ const cardStuffFactories = {
           resolve();
         });
     });
+    ret.translate = translate;
     ret.name = name;
     ret.enable = (el, preview) => {
       el.style.backgroundRepeat = 'repeat-x';
@@ -86,7 +88,7 @@ const cardStuffFactories = {
     } 
     return ret;
   },
-  BackgroundPattern: function(name, src, previewSrc) {
+  BackgroundPattern: function(name, src, previewSrc, translate = false) {
     const ret = {};
     ret.preload = (callback, preview) => 
     new Promise((resolve) => {
@@ -97,6 +99,7 @@ const cardStuffFactories = {
           resolve();
         });
     });
+    ret.translate = translate;
     ret.name = name;
     ret.enable = (el, preview) => {
       el.style.backgroundRepeat = 'repeat';
@@ -107,9 +110,10 @@ const cardStuffFactories = {
     }
     return ret;
   },
-  CenterImage: function(name, src, previewSrc) {
+  CenterImage: function(name, src, previewSrc, translate = false) {
     // Don't forget to add the right vibrate effect to the image.
     const ret = {};
+    ret.translate = translate;
     ret.name = name;
     ret.preload = (callback, preview) =>
       new Promise((resolve) => {
@@ -171,9 +175,10 @@ const cardStuffFactories = {
     };
     return ret;
   },
-  TemplateContent: function(name, templateId) {
+  TemplateContent: function(name, templateId, translate = false) {
     const ret = {};
     ret.name = name;
+    ret.translate = translate;
     ret.enable = (el, window, document) => {
       el.appendChild(
         document.getElementById(templateId).content.cloneNode(true)
@@ -216,21 +221,31 @@ const cardStuff = {
       'bg-img-1'
     ),
     cardStuffFactories.BackgroundCSSClass(
-      'Great choice of colors',
-      'bg-cool-colors'
+      'bgGCC',
+      'bg-cool-colors',
+      undefined,
+      undefined,
+      true
     ),
     cardStuffFactories.BackgroundCSSClass(
-      'Colorful',
-      'bg-animated-gradient'
+      'bgColorful',
+      'bg-animated-gradient',
+      undefined,
+      undefined,
+      true
     ),
     cardStuffFactories.BackgroundCSSClass(
-      'Tout brun',
-      'bg-brown'
+      'bgBrown',
+      'bg-brown',
+      undefined,
+      undefined,
+      true
     ),
     cardStuffFactories.BackgroundPattern(
-      'Is that a private joke?',
+      'bgPrivJoke',
       imgs.patgpib,
-      imgs.patgpibPv
+      imgs.patgpibPv,
+      true
     ),
     cardStuffFactories.BackgroundPattern(
       'Multipull', 
@@ -238,9 +253,11 @@ const cardStuff = {
       imgs.patpullPv
     ),
     cardStuffFactories.BackgroundImage(
-      'Close-up on Pullzorz',
+      'bgCloseUp',
       imgs.pulleurGrosPlan,
-      imgs.pulleurGrosPlanPv
+      imgs.pulleurGrosPlanPv,
+      undefined,
+      true
     ),
     cardStuffFactories.BackgroundImage(
       'Hyrax',
@@ -270,29 +287,34 @@ const cardStuff = {
       imgs.capriboite3Pv
     ),
     cardStuffFactories.CenterImage(
-      'La tête du matin',
+      'mondayMorning',
       imgs.tetedepull,
-      imgs.tetedepull_preview
+      imgs.tetedepull_preview,
+      true
     ),
     cardStuffFactories.CenterImage(
-      'Not a cat',
+      'notACat1',
       imgs.lapinet,
-      imgs.lapinetPv
+      imgs.lapinetPv,
+      true
     ),
     cardStuffFactories.CenterImage(
-      'Not a cat 2',
+      'notACat2',
       imgs.lapinetSourdine,
-      imgs.lapinetSourdinePv
+      imgs.lapinetSourdinePv,
+      true
     ),
     cardStuffFactories.CenterImage(
-      'Artistic impression',
+      'artisticImpression',
       imgs.capribrut,
-      imgs.capribrutPv
+      imgs.capribrutPv,
+      true
     )
   ],
   effects: [
     {
-      name: 'Bouncing head',
+      name: 'bouncingHead',
+      translate: true,
       preload: function(callback, el, window, document) {
         return new Promise((resolve, reject) => {
           this.imgEffect = new MovingImgEffect(
@@ -325,11 +347,25 @@ const cardStuff = {
       }
     },
     cardStuffFactories.TemplateContent(
-      'Glowing sun',
-      'svgSun'
+      'glowingSun',
+      'svgSun',
+      true
     ),
     {
-      name: 'Crazy rainbow',
+      name: 'rainbow',
+      translate: true,
+      enable: function(el, window, document) {
+        const rb = 
+          document.getElementById('svgRainbow').content.cloneNode(true);
+        const svg = rb.querySelector('svg');
+        svg.classList.add('rainbow-ray');
+        svg.style.animationDuration = '2.5s';
+        el.appendChild(rb);
+      }
+    },
+    {
+      name: 'crazyRainbow',
+      translate: true,
       enable: function(el, window, document) {
         const rb = 
           document.getElementById('svgRainbow').content.cloneNode(true);
@@ -337,17 +373,6 @@ const cardStuff = {
           c.style.animationDelay = (i * 0.75) + 's';
           c.classList.add('rainbow-ray', 'origin-bottom-center');
         });
-        el.appendChild(rb);
-      }
-    },
-    {
-      name: 'Rainbow',
-      enable: function(el, window, document) {
-        const rb = 
-          document.getElementById('svgRainbow').content.cloneNode(true);
-        const svg = rb.querySelector('svg');
-        svg.classList.add('rainbow-ray');
-        svg.style.animationDuration = '2.5s';
         el.appendChild(rb);
       }
     },
@@ -382,7 +407,8 @@ const cardStuff = {
       }
     },
     {
-      name: 'Random gifs',
+      name: 'randomGifs',
+      translate: true,
       preload: function(callback, el, window, document) {
         return new Promise((resolve, reject) => {
           this.gifsEffect = new RandomGifsEffect(

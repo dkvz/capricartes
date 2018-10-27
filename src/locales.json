@@ -26,7 +26,21 @@
     "selectMusic": "Select music...",
     "previewBtn": "Preview!",
     "generateBtn": "Generate your link!",
-    "by": "by"
+    "by": "by",
+    "bgCloseUp": "Close-up on PUllzorz",
+    "bgGCC": "Great choice of colors",
+    "bgColorful": "Colorful",
+    "bgBrown": "It's brown",
+    "bgPrivJoke": "The swimming hole",
+    "mondayMorning": "Monday morning",
+    "notACat1": "Not a cat",
+    "notACat2": "Still not a cat",
+    "artisticImpression": "Artistic impression",
+    "bouncingHead": "Bouncing head",
+    "crazyRainbow": "Battery-draining rainbow",
+    "rainbow": "Rainbow",
+    "randomGifs": "Random Gifs",
+    "glowingSun": "Glowing sun"
   },
   "fr": {
     "loading": "Chargement",
@@ -55,6 +69,20 @@
     "selectMusic": "Sélectionner la musique...",
     "previewBtn": "Prévisualiser!",
     "generateBtn": "Générer votre lien!",
-    "by": "par"
+    "by": "par",
+    "bgCloseUp": "Gros plan sur Pullzorz",
+    "bgGCC": "Excellent choix de couleurs",
+    "bgColorful": "Coloré",
+    "bgBrown": "Tout brun",
+    "bgPrivJoke": "Le trou de nage",
+    "mondayMorning": "La tête du matin",
+    "notACat1": "Pas un chat",
+    "notACat2": "Pas un chat non plus",
+    "artisticImpression": "Impression artistique",
+    "bouncingHead": "Tête qui rebondit",
+    "crazyRainbow": "Arc-en-ciel bouffe-batterie",
+    "rainbow": "Arc-en-ciel",
+    "randomGifs": "Gifs aléatoires",
+    "glowingSun": "Soleil kibrille"
   }
 }

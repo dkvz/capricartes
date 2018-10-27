@@ -23,6 +23,9 @@ class Capricartes {
 
   translateAll() {
     this.translator.translateTree(this.document.body);
+    // Translate the options and the checkboxes too.
+    // The first option is the "select something" one.
+    
   }
 
   init() {
@@ -121,11 +124,20 @@ class Capricartes {
 
     // Populate the combo boxes:
     cardStuff.backgrounds.forEach((bg, i) => {
-      addHtmlOption(this.backgroundSelect, bg.name, this.document, i);
+      addHtmlOption(
+        this.backgroundSelect, 
+        bg.translate ? this.translator.t(bg.name) : bg.name, 
+        this.document, 
+        i);
     });
     cardStuff.foregrounds.forEach((im, i) => {
-      addHtmlOption(this.imageSelect, im.name, this.document, i);
+      addHtmlOption(
+        this.imageSelect, 
+        im.translate ? this.translator.t(im.name) : im.name, 
+        this.document, 
+        i);
     });
+    // For the moment we're not translating music names.
     cardStuff.tunes.forEach((m, i) => {
       addHtmlOption(this.musicSelect, m.name, this.document, i);
     });
@@ -143,7 +155,7 @@ class Capricartes {
       addOptionFromTemplate(
         this.effectsDiv,
         checkboxTemplate,
-        e.name,
+        e.translate ? this.translator.t(e.name) : e.name,
         'chkbox-text',
         i,
         'data-effect'
@@ -676,6 +688,8 @@ class Capricartes {
           document.getElementById('playControls')
           .content.cloneNode(true);
       const fp = pb.querySelector('.floatingPlay');
+      // There's like, one word to translate in that template:
+      this.translator.translateTree(fp);
       
       const closePb = _ => fp.style.opacity = 0;
       const playB = fp.querySelector('.playBtn');
