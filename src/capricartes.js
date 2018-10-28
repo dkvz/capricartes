@@ -673,6 +673,9 @@ class Capricartes {
         this.showGreetingCard(el);
         callback && callback();
       }
+    }).catch((e) => {
+      // I need this to debug all the preloading.
+      console.log(e);
     });
   }
 

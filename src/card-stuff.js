@@ -1,6 +1,7 @@
 
 import MovingImgEffect from './moving-img-effect';
 import RandomGifsEffect from './random-gifs-effect';
+import SkewedImgEffect from './skewed-img-effect';
 
 const imgs = {
   capriboite1: require('../static/crapic_1.png'),
@@ -30,7 +31,8 @@ const imgs = {
   lapinetSourdinePv: require('../static/lapin_sourdine_preview.png'),
   capribrut: require('../static/crapicbrut.png'),
   capribrutPv: require('../static/crapicbrut_preview.png'),
-  capritetdroite: require('../static/geubitetedroite.png')
+  capritetdroite: require('../static/geubitetedroite.png'),
+  pulleurSvg: require('../static/pulleur.svg')
 };
 
 imgs.gifs = [];
@@ -440,6 +442,43 @@ const cardStuff = {
       },
       disable: function() {
         this.gifsEffect && this.gifsEffect.stop();
+      }
+    },
+    {
+      name: 'Pull Doppler',
+      preload: function(callback, el, window, document) {
+        return new Promise((resolve, reject) => {
+          this.skewEffect = new SkewedImgEffect(
+            window,
+            document,
+            el,
+            imgs.pulleurSvg,
+            'skewed-img',
+            _ => {
+              (callback && callback());
+              resolve();
+            }
+          );
+        });
+      },
+      enable: function(el, window, document) {
+        if (!this.skewEffect) {
+          this.skewEffect = new SkewedImgEffect(
+            window,
+            document,
+            el,
+            imgs.pulleurSvg,
+            'skewed-img',
+            _ => {
+              this.skewEffect.initialize();
+            }
+          );
+        } else {
+          this.skewEffect.initialize();
+        }
+      },
+      disable: function() {
+        this.skewEffect && this.skewEffect.stop();
       }
     }
   ],

@@ -944,3 +944,27 @@ svg[data-action], img[data-action] {
 .lang-container {
   text-align: center;
 }
+
+/* Class for the skewed-img-effect
+  (supposed to be a SVG). 
+  In the end I'm not using any of this, the FPS cost
+  is too high, event with a static blur.
+  */
+/*@keyframes filters {
+  0%  {filter: drop-shadow(0px 0px 35px #fc102f)}
+  20% {filter: drop-shadow(0px 0px 35px #ec72f8)}
+  40% {filter: drop-shadow(0px 0px 35px #88f98b)}
+  60% {filter: drop-shadow(0px 0px 35px #f8ef8a)}
+  80% {filter: drop-shadow(0px 0px 35px #7648ff)}
+  100% {filter: drop-shadow(0px 0px 35px #1d6d94)}
+}*/
+/*
+@keyframes filters {
+  0% {filter: drop-shadow(0px 0px 50px #1d6d94);}
+  100% {filter: drop-shadow(0px 0px 50px deeppink);}
+}
+
+.skewed-img {
+  animation: filters 0.8s infinite ease-out;
+}
+*/

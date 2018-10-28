@@ -42,6 +42,10 @@ class MovingImgEffect {
    * Addds the image to the parent and starts the animation.
    */
   initialize() {
+    // In other effect classes, I stopped checking for loaded as true.
+    // Doesn't really matter, and I start the effect in a callback
+    // anyway. Also this doesn't tell use it the effect actually
+    // started or not.
     if (this.loaded === true) {
       // Set the image size according to initial viewport size:
       if (this.parent.offsetWidth < (this.initialWidth * 2)) {
