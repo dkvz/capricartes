@@ -45,10 +45,16 @@ class Capricartes {
       // Now process the effects:
       this.effectsDiv.querySelectorAll('input').forEach(n => {
         if (cardStuff.effects[n.getAttribute('data-effect')].translate) {
-          n.parentNode.querySelector('.chkbox-text').textContent = this.translator.t(
-            cardStuff.effects[n.getAttribute('data-effect')].name
-          )
+          n.parentNode.querySelector('.chkbox-text').textContent = 
+            this.translator.t(
+              cardStuff.effects[n.getAttribute('data-effect')].name
+            );
         }
+      });
+      // Also translate the "preview" text on the form but only
+      // if something is not currently previewing.
+      [this.backgroundPreview, this.imagePreview].forEach(n => {
+        if (n.textContent !== '') n.textContent = this.translator.t('preview')
       });
     }
   }
@@ -119,6 +125,11 @@ class Capricartes {
     this.previewBar = this.document.getElementById('previewBar');
     this.cardLink = this.document.getElementById('cardLink');
     this.langSelect = this.document.getElementById('langSelect');
+
+    [this.backgroundPreview, this.imagePreview].forEach(n => 
+      n.textContent = this.translator.t('preview')
+    );
+   
     this.loadingModal.querySelector('.close').addEventListener(
       'click', this.cancelPreview.bind(this)
     );
@@ -381,7 +392,10 @@ class Capricartes {
         )
       }
     } else {
-      this._resetPreview(this.backgroundPreview, 'Preview');
+      this._resetPreview(
+        this.backgroundPreview, 
+        this.translator.t('preview')
+      );
     }
   }
 
@@ -421,7 +435,10 @@ class Capricartes {
         )
       }
     } else {
-      this._resetPreview(this.imagePreview, 'Preview');
+      this._resetPreview(
+        this.imagePreview, 
+        this.translator.t('preview')
+      );
     }
   }
 
