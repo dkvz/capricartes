@@ -727,7 +727,7 @@ class Capricartes {
 
       const audio = cardStuff.tunes[this.state.music].enable();
       const pb = 
-          document.getElementById('playControls')
+          this.document.getElementById('playControls')
           .content.cloneNode(true);
       const fp = pb.querySelector('.floatingPlay');
       // There's like, one word to translate in that template:
