@@ -25,7 +25,32 @@ class Capricartes {
     this.translator.translateTree(this.document.body);
     // Translate the options and the checkboxes too.
     // The first option is the "select something" one.
-    
+    // We should not do this unless the select have been
+    // initialized (also no point doing it if the form is
+    // not around).
+    if (this.backgroundSelect && this.imageSelect && this.effectsDiv) {
+      [this.backgroundSelect, this.imageSelect].forEach(sel => {
+        for (let i = 1; i < sel.options.length; i++) {
+          // We can use "value" as the index here.
+          // The corresponding cardStuff structure is in 
+          // the data-card-stuff attribute.
+          const item = cardStuff[
+            sel.getAttribute('data-card-stuff')
+          ][sel.options[i].value];
+          sel.options[i].textContent = item.translate ?
+            this.translator.t(item.name) :
+            item.name
+        }
+      });
+      // Now process the effects:
+      this.effectsDiv.querySelectorAll('input').forEach(n => {
+        if (cardStuff.effects[n.getAttribute('data-effect')].translate) {
+          n.parentNode.querySelector('.chkbox-text').textContent = this.translator.t(
+            cardStuff.effects[n.getAttribute('data-effect')].name
+          )
+        }
+      });
+    }
   }
 
   init() {
