@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const contentBase = path.join(__dirname, 'dist');
 
 // Instead of having one file for prod and one for dev
@@ -30,9 +31,21 @@ const config = {
     publicPath: '/',
     filename: '[name][hash:5].js'
   },
-  // We need all that stuff for SASS.
-  // I already regret using it.
   optimization: {
+    // Had to add the minimize stuff because of 
+    // a bug in Safari that shows up only
+    // on minified code.
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          mangle: {
+            safari10: true
+          }
+        }
+      })
+    ],
+    // We need all that stuff for SASS.
+    // I already regret using it.
     splitChunks: {
       cacheGroups: {
         styles: {
