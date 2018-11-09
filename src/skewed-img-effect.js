@@ -8,6 +8,9 @@ class SkewedImgEffect {
     this.loaded = false;
     this.disabled = false;
     this.parent = parent;
+    // The speeds are overriden later on, 
+    // in the resize() method, so these 
+    // values are pretty much useless.
     this.vMin = 5;
     this.vMax = 20;
     this.vx = this.vMin;
@@ -62,7 +65,7 @@ class SkewedImgEffect {
       this.img.height = tDim;
     }
     this.minSpeed = Math.ceil(this.img.width / 4);
-    this.maxSpeed = Math.ceil(this.img.width * 2);
+    this.maxSpeed = Math.ceil(this.img.width * 2.5);
   }
 
   /**

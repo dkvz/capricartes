@@ -107,9 +107,9 @@ I'm going to write my own i18n logic as an exercise. For any simple translating 
 For the language selector I'm going to use this svg from Wikimedia commons: https://commons.wikimedia.org/wiki/File:Blank_globe.svg
 
 ## TODO
-- [ ] The translating system must also translate title attributes, if present.
+- [x] The translating system must also translate title attributes, if present.
 - [ ] The back button on preview doesn't actually works. It sometimes does for some reason but not always.
-- [ ] I need to translate all the backgrounds, effects, etc. Maybe not the music. I could add an attribute called "translateKey" to card-stuff.js.
+- [x] I need to translate all the backgrounds, effects, etc. Maybe not the music. I could add an attribute called "translateKey" to card-stuff.js.
 - [x] If music is playing as preview in the form view, and we hit preview, it doesn't stop. It should stop.
 - [x] Chrome mobile:
   - [x] Previewing audio doesn't seem to work -> Chrome doesn't play audio unless play() is directly in a UI event listener.
