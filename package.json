@@ -1,6 +1,6 @@
 {
   "name": "capricartes",
-  "version": "1.0.0",
+  "version": "0.0.11",
   "description": "Send cool greeting cards",
   "main": "index.js",
   "scripts": {

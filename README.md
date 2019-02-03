@@ -107,7 +107,7 @@ I'm going to write my own i18n logic as an exercise. For any simple translating 
 For the language selector I'm going to use this svg from Wikimedia commons: https://commons.wikimedia.org/wiki/File:Blank_globe.svg
 
 ## TODO
-- [ ] When the form view is loading, the loading text is showing up when the form view title and floating help button are also showing up. That shouldn't be the case.
+- [x] When the form view is loading, the loading text is showing up when the form view title and floating help button are also showing up. That shouldn't be the case.
 - [x] The translating system must also translate title attributes, if present.
 - [ ] The back button on preview doesn't actually works. It sometimes does for some reason but not always.
 - [x] I need to translate all the backgrounds, effects, etc. Maybe not the music. I could add an attribute called "translateKey" to card-stuff.js.
