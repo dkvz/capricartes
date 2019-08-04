@@ -586,8 +586,8 @@ class Capricartes {
             // My original plan was to have each slide on its own s= query parameter.
             // It changed along the way into a comma separated list.
             //this.state.slides.push(this.window.atob(this.window.decodeURIComponent(p[1])));
-            this.state.slides = p[1].split(',').map(
-              s => this.window.atob(this.window.decodeURIComponent(s))
+            this.state.slides = this.window.decodeURIComponent(p[1]).split(',').map(
+              s => this.window.atob(s)
             );
             break;
           case 'b':
@@ -603,7 +603,7 @@ class Capricartes {
           case 'e':
             // We can have a coma separated list of effects.
             // We should also check that they exist.
-            const effects = p[1].split(',');
+            const effects = this.window.decodeURIComponent(p[1]).split(',');
             effects.forEach(e => {
               const n = Number(e);
               if (!isNaN(n) && cardStuff.effects[n]) {

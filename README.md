@@ -106,6 +106,24 @@ I'm going to write my own i18n logic as an exercise. For any simple translating 
 
 For the language selector I'm going to use this svg from Wikimedia commons: https://commons.wikimedia.org/wiki/File:Blank_globe.svg
 
+### URL encoding is messing things up
+I don't think I'm decoding the right stuff. Some sites (FACEBOOK) seem to be encoding the commas in the URLs, as commas are reserved characters.
+
+Example:
+https://capricartes.dkvz.eu/crapic?t=Qm9uIGFubmlmIFBpbmEgQ29sYURhbiAhIA%3D%3D&b=5&e=1%2C2%2C5&m=0&fbclid=IwAR1th9fTr6o7IyOwgVO9o1K-U4K_cYPBcjPwn_ngdIZVexgXitC2rYDGeSc
+
+The problem is with the "e=" and all the "%2C" (which is the comma).
+
+Let's first try to fix it on the "slides" part.
+
+http://localhost:8081/crapic?s=c2xpZGUsIHNsaWRlLCBzbGlkZSAx%2Cc2xpZWRleiwgc2xpZGUgMg%3D%3D
+
+### There's a weird error with node-sass
+Yeah... I found that this usually solves it although the output is extremely scary:
+```
+npm rebuild node-sass
+```
+
 ## TODO
 - [x] When the form view is loading, the loading text is showing up when the form view title and floating help button are also showing up. That shouldn't be the case.
 - [x] The translating system must also translate title attributes, if present.
