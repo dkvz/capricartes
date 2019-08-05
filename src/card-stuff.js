@@ -10,8 +10,12 @@ const imgs = {
   capriboite2Pv: require('../static/crapic_2_preview.png'),
   capriboite3: require('../static/crapic_3.png'),
   capriboite3Pv: require('../static/crapic_3_preview.png'),
+  pullboite1: require('../static/pullboite_1.png'),
+  pullboite1Pv: require('../static/pullboite_1_preview.png'),
   pulleurDessous: require('../static/pulleur_wp.jpg'),
   pulleurDessousPv: require('../static/pulleur_wp_preview.jpg'),
+  pulleurLack1: require('../static/pulleur_lack_1.jpg'),
+  pulleurLack1Pv: require('../static/pulleur_lack_1_preview.jpg'),
   capritet: require('../static/capritet.png'),
   patgpib: require('../static/patgpibgray.jpg'),
   patgpibPv: require('../static/patgpibgray_preview.jpg'),
@@ -222,6 +226,12 @@ const cardStuff = {
       imgs.pulleurDessousPv,
       'bg-img-1'
     ),
+    cardStuffFactories.BackgroundImage(
+      'Le pulleur over LACK 2',
+      imgs.pulleurLack1,
+      imgs.pulleurLack1Pv,
+      'bg-img-1'
+    ),
     cardStuffFactories.BackgroundCSSClass(
       'bgGCC',
       'bg-cool-colors',
@@ -287,6 +297,11 @@ const cardStuff = {
       'Caprice boite 3',
       imgs.capriboite3,
       imgs.capriboite3Pv
+    ),
+    cardStuffFactories.CenterImage(
+      'Pull boite 1',
+      imgs.pullboite1,
+      imgs.pullboite1Pv
     ),
     cardStuffFactories.CenterImage(
       'mondayMorning',
