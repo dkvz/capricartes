@@ -90,7 +90,7 @@ const cardStuffFactories = {
       el.style.backgroundRepeat = 'repeat-x';
       if (!preview) el.style.backgroundAttachment = 'fixed';
       el.style.backgroundSize = 'cover';
-      if (positionClass) {
+      if (positionClass && !preview) {
         el.classList.add(positionClass);
       } else {
         el.style.backgroundPosition = 'center';
