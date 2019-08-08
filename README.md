@@ -1,4 +1,6 @@
 # Capricartes
+Live here: https://capricartes.dkvz.eu
+
 Pure Javascript project (meaning no framework, no backend required) to generate greeting cards with my CATS IN IT.
 
 Uses a ton of "newer" JS features (promises, classes, CSS stuff, classList (lol), ...) I almost even used string litterals but then I felt really bad and didn't. For the moment I'm not doing any Babeling because I don't want this to run on pre-ES6 browsers anyway.
