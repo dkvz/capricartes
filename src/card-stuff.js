@@ -16,6 +16,12 @@ const imgs = {
   pulleurDessousPv: require('../static/pulleur_wp_preview.jpg'),
   pulleurLack1: require('../static/pulleur_lack_1.jpg'),
   pulleurLack1Pv: require('../static/pulleur_lack_1_preview.jpg'),
+  pulleurLack2: require('../static/pulleur_lack_2.jpg'),
+  pulleurLack2Pv: require('../static/pulleur_lack_2_preview.jpg'),
+  pulleurLackReverse: require('../static/pulleur_lack_reverse.jpg'),
+  pulleurLackReversePv: require('../static/pulleur_lack_reverse_preview.jpg'),
+  yawningPull: require('../static/yawning_pull.jpg'),
+  yawningPullPv: require('../static/yawning_pull_preview.jpg'),
   capritet: require('../static/capritet.png'),
   patgpib: require('../static/patgpibgray.jpg'),
   patgpibPv: require('../static/patgpibgray_preview.jpg'),
@@ -231,6 +237,25 @@ const cardStuff = {
       imgs.pulleurLack1,
       imgs.pulleurLack1Pv,
       'bg-img-1'
+    ),
+    cardStuffFactories.BackgroundImage(
+      'Le pulleur over LACK 3',
+      imgs.pulleurLackReverse,
+      imgs.pulleurLackReversePv,
+      'bg-img-2'
+    ),
+    cardStuffFactories.BackgroundImage(
+      'Le pulleur over LACK 4',
+      imgs.pulleurLack2,
+      imgs.pulleurLack2Pv,
+      'bg-img-1'
+    ),
+    cardStuffFactories.BackgroundImage(
+      'yawningPull',
+      imgs.yawningPull,
+      imgs.yawningPullPv,
+      'bg-img-1',
+      true
     ),
     cardStuffFactories.BackgroundCSSClass(
       'bgGCC',

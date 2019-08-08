@@ -125,6 +125,7 @@ npm rebuild node-sass
 ```
 
 ## TODO
+- [ ] Background image classes get applied to the preview boxes. That shouldn't be the case.
 - [x] When the form view is loading, the loading text is showing up when the form view title and floating help button are also showing up. That shouldn't be the case.
 - [x] The translating system must also translate title attributes, if present.
 - [ ] The back button on preview doesn't actually works. It sometimes does for some reason but not always.

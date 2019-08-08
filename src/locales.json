@@ -40,7 +40,8 @@
     "crazyRainbow": "Battery-draining rainbow",
     "rainbow": "Rainbow",
     "randomGifs": "Random Gifs",
-    "glowingSun": "Glowing sun"
+    "glowingSun": "Glowing sun",
+    "yawningPull": "Yawning door draft blocker"
   },
   "fr": {
     "loading": "Chargement",
@@ -83,6 +84,7 @@
     "crazyRainbow": "Arc-en-ciel bouffe-batterie",
     "rainbow": "Arc-en-ciel",
     "randomGifs": "Gifs aléatoires",
-    "glowingSun": "Soleil kibrille"
+    "glowingSun": "Soleil kibrille",
+    "yawningPull": "Bloque-courant-d'air qui baille"
   }
 }
