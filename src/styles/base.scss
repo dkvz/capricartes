@@ -668,6 +668,20 @@ svg[data-action], img[data-action] {
 
 }
 
+.bg-img-3 {
+
+  background-position: -800px 0px;
+
+  @include tablet {
+    background-position: -900px 0px;
+  }
+
+  @include desktop {
+    background-position: center;
+  }
+
+}
+
 .the-sun {
   display: block;
   position: absolute;

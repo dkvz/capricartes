@@ -236,7 +236,7 @@ const cardStuff = {
       'Le pulleur over LACK 2',
       imgs.pulleurLack1,
       imgs.pulleurLack1Pv,
-      'bg-img-1'
+      'bg-img-3'
     ),
     cardStuffFactories.BackgroundImage(
       'Le pulleur over LACK 3',
@@ -248,13 +248,13 @@ const cardStuff = {
       'Le pulleur over LACK 4',
       imgs.pulleurLack2,
       imgs.pulleurLack2Pv,
-      'bg-img-1'
+      'bg-img-3'
     ),
     cardStuffFactories.BackgroundImage(
       'yawningPull',
       imgs.yawningPull,
       imgs.yawningPullPv,
-      'bg-img-1',
+      'bg-img-3',
       true
     ),
     cardStuffFactories.BackgroundCSSClass(
