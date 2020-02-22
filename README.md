@@ -127,6 +127,7 @@ npm rebuild node-sass
 ```
 
 ## TODO
+- [ ] Make it so that we don't have to modify the version by hand in the footer.
 - [x] Background image classes get applied to the preview boxes. That shouldn't be the case. -> Fixed in the enable function in the right factory in card-stuff.js.
 - [x] When the form view is loading, the loading text is showing up when the form view title and floating help button are also showing up. That shouldn't be the case.
 - [x] The translating system must also translate title attributes, if present.
