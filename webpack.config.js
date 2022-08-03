@@ -80,6 +80,7 @@ const config = {
         ]
       },
       {
+        // svg is absent because it's in the "fonts" test below.
         test: /\.(png|jpe?g|gif)(\?.*)?$/i,
         use: [
           {
@@ -156,6 +157,6 @@ module.exports = (env, argv) => {
       minify: (argv.mode === 'production') ? minifyOptions : false
     })
   );
-  
+
   return config;
 };
